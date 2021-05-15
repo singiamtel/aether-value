@@ -1,4 +1,4 @@
-import React from 'react';
+import Sidebar from './components/Sidebar';
 import logo from './logo.svg';
 import './App.css';
 
@@ -17,6 +17,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+			<Sidebar/>
         </a>
       </header>
     </div>
