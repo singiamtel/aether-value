@@ -1,3 +1,5 @@
+
+
 .sidebarContainer{
     background-color:#20262B;
     height: 100%;
@@ -12,9 +14,12 @@
 
 .button{
     color: white;
-    height: 5%;
+    height: 6%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.button:hover{
     border: 1px solid;
 }
