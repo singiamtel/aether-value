@@ -9,3 +9,12 @@
     margin-right: auto;
     width: 50%;
 }
+
+.button{
+    color: white;
+    height: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid;
+}

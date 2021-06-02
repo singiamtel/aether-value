@@ -1,0 +1,40 @@
+.PortfolioContainer{
+    background-color: #C4C4C4;
+    display: grid;
+    grid-template-areas:
+        'header'
+        'stock1'
+        'stock2'
+        'stock3';
+
+}
+
+.Header{
+    grid-area: header;
+    padding: 10px;
+    background-color: #20262B;
+    color: white;
+    display: grid;
+    grid-template-areas:
+        'Stock'
+        'Ticker'
+        'stock2'
+        'stock3';
+}
+
+.row{
+    padding: 10px;
+    background-color: #F7F8F9;
+}
+
+.Stock1{
+    grid-area: stock1;
+}
+
+.Stock2{
+    grid-area: stock2;
+}
+
+.Stock3{
+    grid-area: stock3;
+}

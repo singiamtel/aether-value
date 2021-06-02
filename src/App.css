@@ -7,6 +7,16 @@
   height: 100%;
   width: 80%;
   float: left;
+  
+}
+.Grid{
+  display: grid;
+  grid-template-areas:
+    'portfolio portfolio portfolio'
+    'data data watchlist';
+  grid-gap: 3%;
+  padding: 2%;
+  height: 90%;
 }
 
 .Topbar{
@@ -15,31 +25,18 @@
 }
 
 .Portfolio{
+  grid-area: portfolio;
   background-color: #C4C4C4;
-  margin: 3%;
-  width: 94%;
-  height: 50%;
 }
 
-
 .Data{
+  grid-area: data;
   background-color: #C4C4C4;
-  margin: 3%;
-  margin-top: 0px;
-  margin-right: 1.5%;
-  width: 60%;
-  height: 32%;
-  float: left;
 }
 
 .Watchlist{
+  grid-area: watchlist;
   background-color: #C4C4C4;
-  margin: 3%;
-  margin-top: 0px;
-  margin-left: 1.5%;
-  width: 31%;
-  height: 32%;
-  float: right;
 }
 
 .App{

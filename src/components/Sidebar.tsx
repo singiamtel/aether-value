@@ -6,6 +6,7 @@ function Sidebar() {
 	return (
 		<div className='sidebarContainer'>
 			<img id="Logo" src="/logo_white.png" alt="logo" />
+			<div className="button">Dashboard</div>
 		</div>
 	);
 }
