@@ -1,0 +1,11 @@
+.sidebarContainer{
+    background-color:#20262B;
+    height: 100%;
+}
+
+#Logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}

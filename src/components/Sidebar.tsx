@@ -1,14 +1,11 @@
 import { useState } from "react"
-// import './sidebar.css';
+import './Sidebar.css';
 
 function Sidebar() {
-	const [a, setA] = useState(0)
-	setTimeout(() =>{
-		setA(7)
-	}, 3500)
+	
 	return (
-		<div>
-			{a}
+		<div className='sidebarContainer'>
+			<img id="Logo" src="/logo_white.png" alt="logo" />
 		</div>
 	);
 }
