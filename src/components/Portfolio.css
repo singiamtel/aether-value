@@ -1,9 +1,10 @@
 .Header{
     color: white;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 20% repeat(8, 1fr);
     
 }
+
 .Header .item{
     border-top: 1px solid #C4C4C4;
     padding-bottom: 5px;
@@ -14,10 +15,15 @@
     background-color: #20262B;
 }
 
+
+
+
 .body{
     overflow-y: auto;
-    height: 90%;
+    height: 80%;
     background-color: #C4C4C4;
+    text-align: center;
+    
 }
 
 .PortfolioContainer{
