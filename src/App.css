@@ -9,36 +9,16 @@
   float: left;
   
 }
-.Grid{
-  display: grid;
-  grid-template-areas:
-    'portfolio portfolio portfolio'
-    'data data watchlist';
-  grid-gap: 3%;
-  padding: 2%;
-  height: 90%;
-}
 
 .Topbar{
   background-color: #20262B;
-  height:4%;
-}
-
-.Portfolio{
-  grid-area: portfolio;
-  background-color: #C4C4C4;
-}
-
-.Data{
-  grid-area: data;
-  background-color: #C4C4C4;
-}
-
-.Watchlist{
-  grid-area: watchlist;
-  background-color: #C4C4C4;
+  height: 4%;
 }
 
 .App{
   background-color: #E5E5E5;
+}
+
+#Dashboard{
+  height: 95%;
 }
