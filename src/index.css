@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+/* Fullscreen */
+html,body,#root,.App{
+  height: 100%;
+  width: 100%;
+  font-family: 'Zilla Slab', serif;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
