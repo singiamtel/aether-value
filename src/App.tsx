@@ -1,6 +1,7 @@
 import Sidebar from './components/Sidebar';
 import Portfolio from './components/Portfolio';
 import './App.css';
+import Watchlist from './components/Watchlist';
 
 function App() {
 return (
@@ -25,8 +26,8 @@ return (
 				
 				</div>
 
-				<div style={{backgroundColor: "#C4C4C4"}} className="col-span-1 row-span-1">	
-				
+				<div className="col-span-1 row-span-1 overflow-hidden">	
+					<Watchlist name={"Watchlist"} />
 				</div>
 
 			</div>

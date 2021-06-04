@@ -60,6 +60,7 @@ const stockList = [
 		price: 38794.50,
 		quantity: 0.01671182
 	},
+	
 ]
 
 type Portfolio = {
@@ -72,27 +73,29 @@ stockList.forEach((stock) => (totalPortfolio += (stock.price*stock.quantity)))
 totalPortfolio = Math.round(totalPortfolio*100)/100
 
 
+var numberOfRows:number = 0
+
 function Portfolio({name}:Portfolio) {
-	
+	numberOfRows = 0;
 	
 	return (
-		<div className='PortfolioContainer'>
-			<div className='Header'>
+		<div className='grid grid-rows-8 h-full'>
+			<div className='PortfolioHeader row-span-1'>
 				<div className="item"><i>{name}</i></div>
 				<div className="item">Ticker</div>
 				<div className="item">Industry</div>
 				<div className="item">Target Price ($)</div>
-				<div className="item">MoS 30%</div>
+				<div className="item">MoS</div>
 				<div className="item">Price ($)</div>
 				<div className="item">Quantity</div>
 				<div className="item">Total ($)</div>
 				<div className="item">% of Portfolio</div>
 			</div>
-			<div className="body">
-				{stockList.map((stock) => (<PortfolioRow stock={stock.name} ticker={stock.ticker} industry={stock.industry} targetPrice={stock.targetPrice} price={stock.price}  quantity={stock.quantity} totalPortfolio={totalPortfolio}/>))}
+			<div className="PortfolioBody row-span-6">
+				{stockList.map((stock) => (<PortfolioRow rowNumber={numberOfRows++} stock={stock.name} ticker={stock.ticker} industry={stock.industry} targetPrice={stock.targetPrice} price={stock.price}  quantity={stock.quantity} totalPortfolio={totalPortfolio}/>))}
 			</div>
-			<div className="Header">
-				<div className="item"></div>
+			<div className="PortfolioHeader row-span-1">
+				<div className="item">{numberOfRows} Assets</div>
 				<div className="item"></div>
 				<div className="item"></div>
 				<div className="item"></div>

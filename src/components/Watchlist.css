@@ -1,11 +1,11 @@
-.PortfolioHeader{
+.WatchlistHeader{
     color: white;
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    
+    grid-template-columns: repeat(4, 1fr);
+
 }
 
-.PortfolioHeader .item{
+.WatchlistHeader .item{
     border-top: 1px solid #C4C4C4;
     padding-bottom: 5px;
     padding-top: 5px;
@@ -18,9 +18,10 @@
 
 
 
-.PortfolioBody{
+.WatchlistBody{
     overflow-y: auto;
     background-color: #C4C4C4;
     text-align: center;
     
 }
+
