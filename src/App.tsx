@@ -1,6 +1,7 @@
 import Sidebar from './components/Sidebar';
 import Portfolio from './components/Portfolio';
 import './App.css';
+import Watchlist from './components/Watchlist';
 
 function App() {
 return (
@@ -19,14 +20,14 @@ return (
 			{/* Grid */}
 			<div id="Dashboard" className="grid grid-cols-3 grid-rows-3 gap-4 p-7">
 				<div className="col-span-3 row-span-2">	
-					<Portfolio/>
+					<Portfolio name={"Cartera Principal"} />
 				</div>
 				<div style={{backgroundColor: "#C4C4C4"}} className="col-span-2 row-span-1">	
 				
 				</div>
 
-				<div style={{backgroundColor: "#C4C4C4"}} className="col-span-1 row-span-1">	
-				
+				<div className="col-span-1 row-span-1 overflow-hidden">	
+					<Watchlist name={"Watchlist"} />
 				</div>
 
 			</div>
