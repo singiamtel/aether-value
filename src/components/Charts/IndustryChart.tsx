@@ -1,4 +1,3 @@
-import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 
 const stockList = [
@@ -41,7 +40,7 @@ const stockList = [
 ]
 
 /* Emulamos un diccionario */
-const dict = new Object();
+const dict: any = {}
 const labels = []
 const data = []
 
@@ -51,14 +50,12 @@ stockList.forEach((stock) => (
 
   )
 )
+
 /* Recorremos nuestro diccionario */
 for(let key in dict) {
   labels.push(key)
   data.push(dict[key])
 }
-
-
-
 
 /* Formateamos para poder hacer la gráfica */
 const dataList = {
@@ -87,19 +84,17 @@ const dataList = {
   ],
 };
 
-
-
-
-const IndustryChart = () => (
-  <div>
-    <div className='text-center'>
-      <h1>Industry Diversification</h1>
+const IndustryChart = () => {
+  return (
+    <div>
+      <div className='text-center'>
+        <h1>Industry Diversification</h1>
+      </div>
+      <Doughnut
+        type="doughnut"
+        data={dataList}
+      />
     </div>
-    <Doughnut
-      data={dataList}
-       />
-  </div>
-  
-);
+  )};
 
 export default IndustryChart;
