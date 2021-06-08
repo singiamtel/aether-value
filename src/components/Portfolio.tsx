@@ -77,7 +77,7 @@ var numberOfRows:number = 0
 
 function Portfolio({name}:Portfolio) {
 	numberOfRows = 0;
-	
+
 	return (
 		<div className='grid grid-rows-8 h-full'>
 			<div className='PortfolioHeader row-span-1'>
