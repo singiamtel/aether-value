@@ -1,8 +1,7 @@
 .PortfolioRowContainer{
     background-color: #C4C4C4;
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    
+    grid-template-columns: repeat(10, 1fr) 3%;
 }
 
 .item{
@@ -15,9 +14,30 @@
     
 }
 
+
 .even .item{
     background-color: #F7F8F9;
 }
 .odd .item{
     background-color: #FFFFFF;
+}
+
+.even #head{
+    background-color: #20262bd0;
+    color: white;
+    
+    
+}
+.odd #head{
+    background-color: #20262be3;
+    color: white;
+
+    
+}
+.green{
+    color: #0A7B44;
+}
+
+.red{
+    color: #D46157;
 }

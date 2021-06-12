@@ -1,43 +1,20 @@
 import { Doughnut } from 'react-chartjs-2';
 
-const stockList = [
-  {
-    industry:"Real Estate",
-    price: 20.64,
-    quantity: 7
-  },
-  {
-    industry:"Real Estate",
-    price: 50,
-    quantity: 11
-  },
-  {
-    industry:"Gold Royalties",
-    price: 8.4,
-    quantity: 14
-  },
-  {
-    industry:"Ecommerce",
-    price: 217.04,
-    quantity: 3
-  },
-  {
-    industry:"Ecommerce",
-    price: 64.07,
-    quantity: 3
-  },
-  {
-    industry:"Online Advertising",
-    price: 326.04,
-    quantity: 2
-  },
-  {
-    industry:"Cryptocurrency",
-    price: 38794.50,
-    quantity: 0.01671182
-  },
-  
-]
+
+
+type IndustryChart = {
+	portfolio:{
+		name: string;
+		ticker: string;
+		industry: string;
+		targetPrice: number;
+		price: number;
+    day: number;
+		quantity: number;
+	}[],
+}
+
+const IndustryChart = ({portfolio}:IndustryChart) => {
 
 /* Emulamos un diccionario */
 const dict: any = {}
@@ -45,7 +22,7 @@ const labels = []
 const data = []
 
 /* Rellenamos las industrias */
-stockList.forEach((stock) => (
+portfolio.forEach((stock) => (
   (dict[stock.industry] === undefined) ? dict[stock.industry]=(stock.price*stock.quantity) : dict[stock.industry]+=(stock.price*stock.quantity)
 
   )
@@ -84,7 +61,15 @@ const dataList = {
   ],
 };
 
-const IndustryChart = () => {
+
+
+
+
+
+
+
+
+
   return (
     <div>
       <div className='text-center'>

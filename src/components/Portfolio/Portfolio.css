@@ -1,7 +1,7 @@
 .PortfolioHeader{
     color: white;
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(10, 1fr) 3%;
     
 }
 
@@ -13,14 +13,13 @@
     align-items: center;
     justify-content: center;
     background-color: #20262B;
+    
 }
 
 
 
 
 .PortfolioBody{
-    overflow-y: auto;
-    background-color: #C4C4C4;
+    /* overflow-y: auto; */
     text-align: center;
-    
 }
