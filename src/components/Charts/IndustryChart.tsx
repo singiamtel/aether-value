@@ -7,10 +7,15 @@ type IndustryChart = {
 		name: string;
 		ticker: string;
 		industry: string;
-		targetPrice: number;
 		price: number;
-    day: number;
+		closingPrice: number;
+		targetPrice: number;
 		quantity: number;
+		transactions: {
+			quant: number;
+			date: string;
+			buyingPrice: number;
+		}[];
 	}[],
 }
 

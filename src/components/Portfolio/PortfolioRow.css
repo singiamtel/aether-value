@@ -1,13 +1,12 @@
 .PortfolioRowContainer{
     background-color: #C4C4C4;
     display: grid;
-    grid-template-columns: repeat(10, 1fr) 3%;
+    grid-template-columns: repeat(2, 2fr) repeat(5, 1.2fr) repeat(4, 2fr) 3%;
 }
 
 .item{
     border-top: 1px solid #C4C4C4;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    
     display: flex;
     align-items: center;
     justify-content: center;

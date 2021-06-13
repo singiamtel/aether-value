@@ -1,7 +1,7 @@
 .PortfolioHeader{
     color: white;
     display: grid;
-    grid-template-columns: repeat(10, 1fr) 3%;
+    grid-template-columns: repeat(2, 2fr) repeat(5, 1.2fr) repeat(4, 2fr) 3%;
     
 }
 
