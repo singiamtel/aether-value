@@ -35,7 +35,7 @@ const Portfolio =({name,portfolio,onDelete}:Portfolio) => {
 	/* Stores the total value of the Portfolio */
 	var totalPortfolio = 0
 	portfolio.forEach((stock) => (totalPortfolio += (stock.price*stock.quantity)))
-	totalPortfolio = Math.round(totalPortfolio*100)/100
+	
 
 
 	return (

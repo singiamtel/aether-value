@@ -31,15 +31,16 @@ function PortfolioRow({rowNumber, onDelete, stock, ticker, industry, targetPrice
 	transactions.map((trans) => (invested += trans.quant*trans.buyingPrice))
 	transactions.map((trans) => (averageEntryPrice += ((trans.quant*trans.buyingPrice)/quantity)))
 
-	total = Math.round(price * quantity *100)/100;
-	MoS = Math.round((targetPrice/price -1)*10000)/100;
+	total = price * quantity
+	MoS = (targetPrice/price -1)*100
 
-	const totalChange = Math.round((total - invested)*100)/100
-	const totalChangePercentage = Math.round((totalChange/invested)*10000)/100
-	const percentageOfPortfolio = Math.round((total / totalPortfolio) *10000)/100
-	const dayCuant = Math.round((dayChange*quantity) *100)/100
+	const totalChange = (total - invested)
+	const totalChangePercentage = (totalChange/invested)*100
+	const percentageOfPortfolio = (total / totalPortfolio) *100
+	const dayCuant = (dayChange*quantity)
 	const evenRow = (rowNumber % 2 === 0)
-	averageEntryPrice = Math.round((averageEntryPrice) *100)/100
+	averageEntryPrice = (averageEntryPrice)
+	/* We maintain this math.round for BTC */
 	quantity = Math.round(quantity*100000000)/100000000
 
 	return (
@@ -47,16 +48,17 @@ function PortfolioRow({rowNumber, onDelete, stock, ticker, industry, targetPrice
 			{/* <div id="head" className="item">{stock}</div> */}
 			<div id="head" className="item">{ticker}</div>														{/* Ticker */}
 			<div className="item border-r">{industry}</div>														{/* Industry */}
-			<div className="item">$ {targetPrice}</div>														{/* Target Price */}
-			<div className="item border-r">{MoS} % </div>														{/* Margin Of Safety */}
-			<div className="item border-r">$ {averageEntryPrice} </div>														{/* Average Entry Price */}
-			<div className="item">$ {price} </div>																{/* Price */}
+			<div className="item">$ {targetPrice.toFixed(2)}</div>														{/* Target Price */}
+			<div className="item border-r">{MoS.toFixed(2)} % </div>														{/* Margin Of Safety */}
+			<div className="item border-r">$ {averageEntryPrice.toFixed(2)} </div>														{/* Average Entry Price */}
+			<div className="item">$ {price.toFixed(2)} </div>																{/* Price */}
 			<div className="item">{quantity}</div>																{/* Quantity */}
-			<div className={"item "+ (dayCuant > 0 ? 'green' : 'red') }><b>$ {dayCuant} </b></div>				{/* (Day Change * Cuantity) */}
-			<div className="item">$ {total}</div>																{/* Total */}
-			<div className={"item border-r "+ (totalChange > 0 ? 'green' : 'red') }><b>$ {totalChange} ({totalChangePercentage}%)</b></div>				{/* Total Change */}
-			<div className="item border-r">{percentageOfPortfolio} %</div>		{/* Percentage of the portfolio */}
+			<div className={"item "+ (dayCuant > 0 ? 'green' : 'red') }><b>$ {dayCuant.toFixed(2)} </b></div>				{/* (Day Change * Cuantity) */}
+			<div className="item">$ {total.toFixed(2)}</div>																{/* Total */}
+			<div className={"item border-r "+ (totalChange > 0 ? 'green' : 'red') }><b>$ {totalChange.toFixed(2)} ({totalChangePercentage.toFixed(2)}%)</b></div>				{/* Total Change */}
+			<div className="item border-r">{percentageOfPortfolio.toFixed(2)} %</div>		{/* Percentage of the portfolio */}
 			<div className="item"><FaTimes style={{cursor: 'pointer'}} onClick={() => onDelete(ticker)}/></div>	{/* Cross */}
+			
 		</div>
 	);
 }

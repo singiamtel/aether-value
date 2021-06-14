@@ -5,6 +5,7 @@ import './Home.css';
 import Watchlist from './components/Watchlist/Watchlist';
 import IndustryChart from "./components/Charts/IndustryChart";
 import { useState } from 'react';
+import AddStock from './components/AddStock';
 
 
 
@@ -137,7 +138,7 @@ function Home() {
 			ticker: "BTC",
 			industry:"Criptocurrency",
 			targetPrice: 500000,
-			price: 39042.40,
+			price: 40578.40,
 			closingPrice: 35558.20,
 			quantity: 0,
 			transactions: [
@@ -885,6 +886,36 @@ const deleteRow = (ticker:string) => {
 	setPortfolio(portfolio.filter((stock) => stock.ticker !== ticker))
 }
 
+
+
+//Add Row
+const addRow = (ticker:string, quant:number, date:string) => {
+	const newStock = {
+		name: ticker,
+		ticker:"",
+		industry: "",
+		targetPrice: 0,
+		price:0,
+		closingPrice: 0,
+		quantity:0,
+		transactions: [
+			{
+				quant: quant,
+				date: date,
+				buyingPrice: 0
+			},
+		]
+}
+	stockList.push(newStock)
+
+	totalRealizedGains = 0
+	stockList[stockList.length -1].transactions.map((trans) =>(stockList[stockList.length -1].quantity += trans.quant))
+	stockList.map((stock) => ((stock.transactions.map((trans) =>(stock.quantity <= 0 ? totalRealizedGains += trans.buyingPrice*trans.quant : "")))))
+	totalRealizedGains *= -1
+	
+	setPortfolio(stockList.filter((stock) => stock.quantity >0))
+}
+
 return (
 	<div className="Home">
 		{/* Sidebar */}
@@ -898,6 +929,16 @@ return (
 		{/* Main */}
 		<div className="Main p-7">
 			<Portfolio name={"Cartera Principal"} portfolio={portfolio} onDelete={deleteRow}/>
+
+			<AddStock stockList={stockList} addRow={addRow}/>
+
+
+
+
+
+
+
+
 
 			{/* Data & Watchlist Container */}
 			{/* <div className="grid grid-cols-3 gap-4 pt-7">

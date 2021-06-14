@@ -1,6 +1,6 @@
 import './Topbar.css';
 
-type Sidebar = {
+type Tobar = {
 	portfolio:{
 		name: string;
 		ticker: string;
@@ -18,7 +18,7 @@ type Sidebar = {
 	totalRealizedGains:number
 }
 
-function Sidebar({portfolio,totalRealizedGains}:Sidebar) {
+function Tobar({portfolio,totalRealizedGains}:Tobar) {
 	/* Stores the total value of the Portfolio */
 	let totalPortfolio = 0
 	let totalDayChange = 0
@@ -38,21 +38,18 @@ function Sidebar({portfolio,totalRealizedGains}:Sidebar) {
 
 	totalPortfolio += totalRealizedGains
 
-	const totalChange = Math.round((totalPortfolio - totalInvested)*100)/100
-	const totalChangePercentage = Math.round((totalChange/totalInvested)*10000)/100
-	totalPortfolio = Math.round(totalPortfolio*100)/100
-	totalDayChange = Math.round(totalDayChange*100)/100
-	percentageDayChange = Math.round(percentageDayChange*100)/100
+	const totalChange = (totalPortfolio - totalInvested)
+	const totalChangePercentage = (totalChange/totalInvested)*100
 
 	return (
 		<div className='text-white flex text-xs justify-center items-center h-full'>
 			<div className='flex-initial px-7'>
 				Portfolio: 
-				<div className="text-xl"> ${totalPortfolio}</div>
+				<div className="text-xl"> ${totalPortfolio.toFixed(2)}</div>
 			</div>
 			<div className='flex-initial px-7'>
 				Total:
-				<div className={"text-xl "+ (totalChange > 0 ? 'greenTopbar' : 'red') }> $ {totalChange} ({totalChangePercentage}%)</div>
+				<div className={"text-xl "+ (totalChange > 0 ? 'greenTopbar' : 'red') }> $ {totalChange.toFixed(2)} ({totalChangePercentage.toFixed(2)}%)</div>
 			</div>
 			<div className='flex-initial px-7'>
 				Year:
@@ -60,10 +57,10 @@ function Sidebar({portfolio,totalRealizedGains}:Sidebar) {
 			</div>
 			<div className='flex-initial px-7'>
 				Day:
-				<div className={"text-xl "+ (totalDayChange > 0 ? 'greenTopbar' : 'red') }> $ {totalDayChange} ({percentageDayChange}%)</div>
+				<div className={"text-xl "+ (totalDayChange > 0 ? 'greenTopbar' : 'red') }> $ {totalDayChange.toFixed(2)} ({percentageDayChange.toFixed(2)}%)</div>
 			</div>
 		</div>
 	);
 }
 
-export default Sidebar;
+export default Tobar;

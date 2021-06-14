@@ -1,7 +1,7 @@
 .PortfolioRowContainer{
     background-color: #C4C4C4;
     display: grid;
-    grid-template-columns: repeat(2, 2fr) repeat(5, 1.2fr) repeat(4, 2fr) 3%;
+    grid-template-columns: repeat(2, 2fr) repeat(5, 1.4fr) repeat(4, 2fr) 2%;
 }
 
 .item{
