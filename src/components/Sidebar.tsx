@@ -6,14 +6,17 @@ import { FaRegEye } from "react-icons/fa";
 import {BsListNested} from "react-icons/bs";
 import { Link } from 'react-router-dom';
 
+type Sidebar ={
+	activeElement: string
+}
 
-function Sidebar() {
+function Sidebar({activeElement}:Sidebar) {
 	
 	return (
 		<div className='sidebarContainer'>
 			<img id="Logo" src="/logo_white.png" alt="logo" />
 			<Link to="/Home">
-			<button className="active">
+			<button className={activeElement === "Dashboard" ? "active": "btn"}>
 				<div className="px-7">
 					<RiDashboardFill style={{fontSize:30}}/>
 				</div>
@@ -37,7 +40,7 @@ function Sidebar() {
 			</button>
 			</Link>
 			<Link to="/Transactions">
-				<button className="btn">
+				<button className={activeElement === "Transactions" ? "active": "btn"}>
 				<div className="px-7">
 					<BsListNested style={{fontSize:30}}/>
 				</div>

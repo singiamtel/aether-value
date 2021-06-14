@@ -1,0 +1,25 @@
+.TransactionHeader{
+    color: white;
+    display: grid;
+    grid-template-columns: 20% 10% repeat(5, 2fr);
+    
+}
+
+.TransactionHeader .item{
+    border-top: 1px solid #C4C4C4;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #20262B;
+    
+}
+
+
+
+
+.TransactionBody{
+    /* overflow-y: auto; */
+    text-align: center;
+}

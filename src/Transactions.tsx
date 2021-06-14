@@ -1,16 +1,11 @@
 import Sidebar from './components/Sidebar';
 import Topbar from './components/Topbar';
-import Portfolio from './components/Portfolio/Portfolio';
-import './Home.css';
-import Watchlist from './components/Watchlist/Watchlist';
-import IndustryChart from "./components/Charts/IndustryChart";
+import './Transactions.css';
 import { useState } from 'react';
-import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import TransactionRow from './components/TransactionRow';
 
 
-
-function App() {
+function Transactions() {
 
 	const stockList = [
 		{
@@ -877,56 +872,53 @@ stockList.map((stock) => ((stock.transactions.map((trans) =>(stock.quantity += t
 stockList.map((stock) => ((stock.transactions.map((trans) =>(stock.quantity <= 0 ? totalRealizedGains += trans.buyingPrice*trans.quant : "")))))
 totalRealizedGains *= -1
 
-const [portfolio,setPortfolio] = useState(stockList.filter((stock) => stock.quantity >0))
+const [transactions,setTransactions] = useState(stockList)
 
-
-//Delete Row
-const deleteRow = (ticker:string) => {
-	setPortfolio(portfolio.filter((stock) => stock.ticker !== ticker))
-}
+let numberOfRows = 0
 
 return (
-	<div className="App">
+	<div className="Home">
 		{/* Sidebar */}
 		<div className="Sidebar">
-			<Sidebar/>
+			<Sidebar activeElement="Transactions"/>
 		</div>
 
 		<div className="Topbar">
-			<Topbar portfolio={portfolio} totalRealizedGains={totalRealizedGains} />
+			<Topbar portfolio={transactions} totalRealizedGains={totalRealizedGains} />
 		</div>
 		{/* Main */}
 		<div className="Main p-7">
 			{/* Portfolio Container */}
-			<div className="col-span-3">	
-				<Portfolio name={"Cartera Principal"} portfolio={portfolio} onDelete={deleteRow}/>
-			</div>
+			<div className='grid grid-rows-8'>
+				<div className='TransactionHeader row-span-1'>
+					<div className="item"><i>Name</i></div>
+					<div className="item">Ticker</div>
+					<div className="item">Industry</div>
+					<div className="item">Date</div>
+					<div className="item">Quantity</div>
+					<div className="item">Asset Price</div>
+					<div className="item">Transaction Total</div>
+				</div>
+				<div className="TransactionBody row-span-6">
+					{transactions.map((stock) => (stock.transactions.map((trans) => (<TransactionRow rowNumber={numberOfRows++} stock={stock.name} ticker={stock.ticker} industry={stock.industry} buyingPrice={trans.buyingPrice} quantity={trans.quant} date={trans.date}/>))))}
+					
 
-			{/* Data & Watchlist Container */}
-			<div className="grid grid-cols-3 gap-4 pt-7">
-				<div style={{backgroundColor: "#C4C4C4"}} className="col-span-2">
-					{/* Data Grid */}
-					<div className="grid grid-cols-3 gap-10 p-3">
-						{/* Col1 */}
-						<div className="col-span-1">
-							<IndustryChart portfolio={portfolio}/>
-						</div>
-						{/* Col1 */}
-						<div className="col-span-1">
-							<IndustryChart portfolio={portfolio}/>
-						</div>
-						{/* Col1 */}
-						<div className="col-span-1">
-							<IndustryChart portfolio={portfolio}/>
-						</div>
-							
-					</div>
+				</div>
+				<div className="TransactionHeader row-span-1">
+					<div className="item">{numberOfRows} Transactions</div>
+					<div className="item"></div>
+					<div className="item"></div>
+					<div className="item"></div>
+					<div className="item"></div>
+					<div className="item"></div>
+					<div className="item"></div>
+					
+					
+
 				</div>
 
-				<div className="col-span-1  overflow-hidden">	
-					<Watchlist name={"Watchlist"} />
-				</div>
 			</div>
+			
 
 		</div>
 		
@@ -934,4 +926,4 @@ return (
 );
 }
 
-export default App;
+export default Transactions;
