@@ -1,9 +1,14 @@
+import { useState } from 'react';
+import AddStock from '../AddStock';
 import './Portfolio.css';
 import PortfolioRow from "./PortfolioRow";
+import { ImPlus } from "react-icons/im";
 
 
+//OBSOLETO: usar el tipo que está en /models
 type Portfolio = {
 	name: string,
+	addRow: (ticker: string, quant: number, date: string) => void,
 	portfolio:{
 		name: string;
 		ticker: string;
@@ -25,9 +30,17 @@ type Portfolio = {
 
 
 
-const Portfolio =({name,portfolio,onDelete}:Portfolio) => {
+
+const Portfolio =({name,addRow,portfolio,onDelete}:Portfolio) => {
 	let numberOfRows = 0;
 	let numberOfStocks = 0;
+
+	//popUp Hook
+	const [popupAddStockVisible, setPopupVisible] = useState<boolean>(false)
+
+	function togglePopup() {
+		setPopupVisible(!popupAddStockVisible)
+	}
 
 	/* Counts the number of assets */
 	portfolio.map((stock) => ((stock.price == -1 ? "" : numberOfStocks++)))
@@ -35,7 +48,6 @@ const Portfolio =({name,portfolio,onDelete}:Portfolio) => {
 	/* Stores the total value of the Portfolio */
 	var totalPortfolio = 0
 	portfolio.forEach((stock) => (totalPortfolio += (stock.price*stock.quantity)))
-	
 
 
 	return (
@@ -62,6 +74,14 @@ const Portfolio =({name,portfolio,onDelete}:Portfolio) => {
 			</div>
 			<div className="PortfolioHeader row-span-1">
 				<div className="item">{numberOfStocks} Assets</div>
+				<div className="item">
+					<button className={"addStock"} onClick={togglePopup}>
+						<div className="px-3">
+							<ImPlus style={{fontSize:20}}/>
+						</div>
+						Añadir
+					</button>
+				</div>
 				<div className="item"></div>
 				<div className="item"></div>
 				<div className="item"></div>
@@ -72,8 +92,7 @@ const Portfolio =({name,portfolio,onDelete}:Portfolio) => {
 				<div className="item"></div>
 				<div className="item"></div>
 				<div className="item"></div>
-				<div className="item"></div>
-
+				<AddStock addRow={addRow} popUpState={popupAddStockVisible} togglePopUpState={togglePopup}/>
 			</div>
 		</div>
 	);

@@ -1,5 +1,4 @@
 #header{
-	border-top: 1px solid #C4C4C4;
     padding-bottom: 5px;
     padding-top: 5px;
     display: flex;
@@ -7,21 +6,10 @@
     justify-content: center;
     background-color: #20262B;
 	color:white;
-	border-radius: 5px;
-}
-.form{
-	height: 170px;
-	width: 200px;
-	margin-top: 20px;
-	background-color: #F7F8F9;
-	padding: 10px;
-	border-radius: 15px;
+	border-top-left-radius:5px;
+	border-top-right-radius: 5px;
 }
 
-.formBody{
-	background-color: #F7F8F9;
-	padding: 10px;
-}
 
 #submit{
 	background-color: #20262bd0;
@@ -29,5 +17,38 @@
 	align-items: center;
     justify-content: center;
 	width: 100%;
-	border-radius: 5px;
 }
+
+  .hidden{
+	  display: none;
+  }
+  .popup {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	background: rgba(0,0,0, 0.5);
+  }
+  .popup_inner {
+	width: 20%;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: auto;
+	background: white;
+	border-radius: 5px;
+	transform: translate(-50%, -150%);
+  }
+
+  .addButton{
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius: 5px;
+  }
+  .closeCross{
+	position:absolute;
+	right: 0;
+	top: 10px;;
+  }

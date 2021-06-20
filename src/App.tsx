@@ -1,8 +1,7 @@
-import React from "react";
 import { BrowserRouter, Redirect, Router, Switch, Route, Link } from "react-router-dom";
-import Sidebar from "./components/Sidebar";
 import Home from "./Home"
-import Transaction from "./Transactions"
+import Login from "./Login"
+import Transaction from "./components/Transactions"
 
 
 
@@ -14,6 +13,7 @@ function App() {
             from="/"
             to="/home" />
           <Switch>
+            <Route path="/login" component={Login} />
             <Route path="/home" component={Home} />
             <Route path="/transactions" component={Transaction} />
             <Route path="*"> </Route>

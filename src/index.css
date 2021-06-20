@@ -1,3 +1,7 @@
+
+
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -14,11 +18,21 @@ code {
 
 
 
-/* Fullscreen */
+
 html,body,#root,.App{
+  /* Fullscreen */
   height: 100%;
   width: 100%;
-  
+
+  /* Color Palette */
+--primaryColor: #20262B;
+--secondaryColor: #E5E5E5;
+--darkGray: #31363B;
+--mediumGray: #3E4347;
+--lightGray: #F7F8F9;
+
+
+
 }
 
 @tailwind base;

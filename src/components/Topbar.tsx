@@ -1,3 +1,4 @@
+import Dropdown from './Dropdown';
 import './Topbar.css';
 
 type Tobar = {
@@ -58,6 +59,9 @@ function Tobar({portfolio,totalRealizedGains}:Tobar) {
 			<div className='flex-initial px-7'>
 				Day:
 				<div className={"text-xl "+ (totalDayChange > 0 ? 'greenTopbar' : 'red') }> $ {totalDayChange.toFixed(2)} ({percentageDayChange.toFixed(2)}%)</div>
+			</div>
+			<div className='flex-initial px-7 absolute right-0'>
+				<Dropdown/>
 			</div>
 		</div>
 	);

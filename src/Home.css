@@ -1,8 +1,20 @@
+.Home{
+  background-color: var(--secondaryColor);
+  height: 100%;
+  width: 100%;
+}
+
 .Sidebar{
   height: 100%;
   width: 15%;
   float: left;
 }
+
+.Topbar{
+  background-color: var(--primaryColor);
+  height: 7%;
+}
+
 .Main{
   height: 93%;
   width: 85%;
@@ -10,14 +22,11 @@
   overflow-y: auto;
 }
 
-.Topbar{
-  background-color: #20262B;
-  height: 7%;
-}
 
-.Home{
-  background-color: #E5E5E5;
-  height: 100%;
-  width: 100%;
-}
+
  
+.dataContainer{
+  background: #3E4347;
+  border-radius: 10px;
+  padding: 20px;
+}

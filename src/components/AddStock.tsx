@@ -1,4 +1,5 @@
 import { Formik, Field, Form, FormikHelpers } from 'formik';
+import { ImCross } from 'react-icons/im';
 import './AddStock.css';
 
 interface Values {
@@ -16,7 +17,7 @@ interface Values {
 
 
 type AddStock = {
-	stockList: {
+	/* stockList: {
 		name: string;
 		ticker: string;
 		industry: string;
@@ -29,16 +30,25 @@ type AddStock = {
 			date: string;
 			buyingPrice: number;
 		}[];
-	}[],
+	}[], */
 	addRow: (ticker: string, quant: number, date: string) => void,
+	popUpState: boolean,
+	togglePopUpState: () => void,
 }
 
 
-function AddStock({stockList,addRow}:AddStock) {
+function AddStock({addRow,popUpState,togglePopUpState}:AddStock) {
 	
 	return (
-		<div className="form">
-			<h1 id="header">Añadir Stock</h1>
+		<div className={"popup " + (popUpState ? " " : "hidden")}>
+			<div className="popup_inner">
+			<h1 id="header" >Introduce los datos
+				<button onClick={togglePopUpState}>
+					<div className="px-3 closeCross">
+						<ImCross style={{fontSize:15}}/>
+					</div>
+				</button>
+			</h1>
 			<Formik 
 				initialValues={{
 					name: "",
@@ -63,27 +73,29 @@ function AddStock({stockList,addRow}:AddStock) {
 					setSubmitting(false)
 				}, 500)
 				}}
-			>
+			>	
 				<Form >
-				<div className="formBody">
-					<p className={"grid grid-cols-2"}>
+				
+					<p className={"grid grid-cols-2 px-4 py-2 text-black"}>
 					<label htmlFor="ticker">Ticker: </label>
 					<Field id="ticker" name="ticker" placeholder="AAPL" />
 					</p>
 					
-					<p className={"grid grid-cols-2"}>
+					<p className={"grid grid-cols-2 px-4 py-2 text-black"}>
 					<label htmlFor="quant">Quantity: </label>
-					<Field id="quant" name="quant" placeholder="quant"/>
+					<Field id="quant" name="quant" placeholder={0}/>
 					</p>
 					
-					<p className={"grid grid-cols-2"}>
+					<p className={"grid grid-cols-2 px-4 py-2 text-black"}>
 					<label htmlFor="date">Date: </label>
-					<Field id="date" name="date" placeholder="date"/>
+					<Field id="date" name="date" placeholder="2021-01-01"/>
 					</p>
-				</div>
-				<button id="submit" type="submit">Submit</button>
+				
+				<button className="p-1 addButton" id="submit" type="submit" onClick={togglePopUpState}>Añadir</button>
 				</Form>
+				
 			</Formik>
+			</div>
 		</div>
 	);
 }

@@ -1,8 +1,8 @@
-import Sidebar from './components/Sidebar';
-import Topbar from './components/Topbar';
+import Sidebar from './Sidebar';
+import Topbar from './Topbar';
 import './Transactions.css';
 import { useState } from 'react';
-import TransactionRow from './components/TransactionRow';
+import TransactionRow from './TransactionRow';
 
 
 function Transactions() {

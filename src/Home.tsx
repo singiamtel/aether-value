@@ -5,14 +5,17 @@ import './Home.css';
 import Watchlist from './components/Watchlist/Watchlist';
 import IndustryChart from "./components/Charts/IndustryChart";
 import { useState } from 'react';
-import AddStock from './components/AddStock';
-
+import { GetPortfolio } from './api/GetPortfolio';
 
 
 
 
 function Home() {
 
+
+let auxstockList = GetPortfolio()!.wallet
+
+	//OBSOLETE: Se obtiene de la API
 	const stockList = [
 		{
 			/* Info a pedir 1 vez */
@@ -21,8 +24,8 @@ function Home() {
 			industry:"Real Estate",
 			//Precio a inicio de cada año?
 			/* Info a pedir cada vez */
-			price: 21.23,
-			closingPrice: 21.30,
+			price: 20.72,
+			closingPrice: 21.23,
 	
 			/* Info a guardar en la BBDD */
 			targetPrice: 32,
@@ -43,8 +46,8 @@ function Home() {
 			ticker: "BAM",
 			industry:"Real Estate",
 			targetPrice: 77,
-			price: 49.63,
-			closingPrice: 49.88,
+			price: 49.57,
+			closingPrice: 50.15,
 			quantity: 0,
 			transactions: [
 				{
@@ -64,8 +67,8 @@ function Home() {
 			ticker: "SAND",
 			industry:"Gold Royalties",
 			targetPrice: 13,
-			price: 8.92,
-			closingPrice: 9.19,
+			price: 8.62,
+			closingPrice: 9.08,
 			quantity: 0,
 			transactions: [
 				{
@@ -80,8 +83,8 @@ function Home() {
 			ticker: "BABA",
 			industry:"Ecommerce",
 			targetPrice: 355,
-			price: 211.64,
-			closingPrice: 213.07,
+			price: 211.40,
+			closingPrice: 209.32,
 			quantity: 0,
 			transactions: [
 				{
@@ -101,8 +104,8 @@ function Home() {
 			ticker: "EBAY",
 			industry:"Ecommerce",
 			targetPrice: 77,
-			price: 67.13,
-			closingPrice: 66.75,
+			price: 65.63,
+			closingPrice: 66.09,
 			quantity: 0,
 			transactions: [
 				{
@@ -117,8 +120,8 @@ function Home() {
 			ticker: "FB",
 			industry:"Online Advertising",
 			targetPrice: 409,
-			price: 331.26,
-			closingPrice: 332.46,
+			price: 337.12,
+			closingPrice: 331.08,
 			quantity: 0,
 			transactions: [
 				{
@@ -138,8 +141,8 @@ function Home() {
 			ticker: "BTC",
 			industry:"Criptocurrency",
 			targetPrice: 500000,
-			price: 40578.40,
-			closingPrice: 35558.20,
+			price: 37830.40,
+			closingPrice: 39180.20,
 			quantity: 0,
 			transactions: [
 				{
@@ -873,21 +876,24 @@ function Home() {
 		},
 	]
 
+//OBSOLETE: Se obtiene de la API
 let totalRealizedGains = 0
 stockList.map((stock) => ((stock.transactions.map((trans) =>(stock.quantity += trans.quant)))))
 stockList.map((stock) => ((stock.transactions.map((trans) =>(stock.quantity <= 0 ? totalRealizedGains += trans.buyingPrice*trans.quant : "")))))
 totalRealizedGains *= -1
 
+//OBSOLETE: Se obtiene de la API
+//portfolio Hook
 const [portfolio,setPortfolio] = useState(stockList.filter((stock) => stock.quantity >0))
 
-
+//OBSOLETE: Hay que hacer un método pra añadir transacciones. Cuando se cierre la posición, desaparece.
 //Delete Row
 const deleteRow = (ticker:string) => {
 	setPortfolio(portfolio.filter((stock) => stock.ticker !== ticker))
 }
 
 
-
+//OBSOLETE: Hay que hacer un método pra añadir transacciones. 
 //Add Row
 const addRow = (ticker:string, quant:number, date:string) => {
 	const newStock = {
@@ -905,7 +911,7 @@ const addRow = (ticker:string, quant:number, date:string) => {
 				buyingPrice: 0
 			},
 		]
-}
+	}
 	stockList.push(newStock)
 
 	totalRealizedGains = 0
@@ -923,33 +929,19 @@ return (
 			<Sidebar activeElement="Dashboard"/>
 		</div>
 
-		<div className="Topbar">
+		<header className="Topbar">
 			<Topbar portfolio={portfolio} totalRealizedGains={totalRealizedGains} />
-		</div>
+		</header>
 		{/* Main */}
 		<div className="Main p-7">
-			<Portfolio name={"Cartera Principal"} portfolio={portfolio} onDelete={deleteRow}/>
+			<Portfolio name={"Cartera Principal"} addRow={addRow} portfolio={portfolio} onDelete={deleteRow}/>
 
-			<AddStock stockList={stockList} addRow={addRow}/>
-
-
-
-
-
-
-
-
+			
 
 			{/* Data & Watchlist Container */}
-			{/* <div className="grid grid-cols-3 gap-4 pt-7">
-				<div style={{backgroundColor: "#C4C4C4"}} className="col-span-2">
+			<div className="grid grid-cols-3 gap-4 pt-7">
+				<div className="dataContainer col-span-2">
 					<div className="grid grid-cols-3 gap-10 p-3">
-						<div className="col-span-1">
-							<IndustryChart portfolio={portfolio}/>
-						</div>
-						<div className="col-span-1">
-							<IndustryChart portfolio={portfolio}/>
-						</div>
 						<div className="col-span-1">
 							<IndustryChart portfolio={portfolio}/>
 						</div>
@@ -960,7 +952,7 @@ return (
 				<div className="col-span-1  overflow-hidden">	
 					<Watchlist name={"Watchlist"} />
 				</div>
-			</div> */}
+			</div>
 
 		</div>
 		
