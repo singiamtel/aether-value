@@ -17,20 +17,6 @@ interface Values {
 
 
 type AddStock = {
-	/* stockList: {
-		name: string;
-		ticker: string;
-		industry: string;
-		price: number;
-		closingPrice: number;
-		targetPrice: number;
-		quantity: number;
-		transactions: {
-			quant: number;
-			date: string;
-			buyingPrice: number;
-		}[];
-	}[], */
 	addRow: (ticker: string, quant: number, date: string) => void,
 	popUpState: boolean,
 	togglePopUpState: () => void,

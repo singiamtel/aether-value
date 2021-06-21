@@ -3,6 +3,7 @@ import { Fragment} from 'react'
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { AiOutlineSetting, AiTwotoneSetting } from "react-icons/ai";
 import { IoLogOutOutline, IoLogOut } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 export default function Drowpdown() {
   return (
@@ -16,7 +17,7 @@ export default function Drowpdown() {
         </div>
         <Transition
           as={Fragment}
-          enter="transition ease-out duration-100"
+          enter="transition ease-out duration-75"
           enterFrom="transform opacity-0 scale-95"
           enterTo="transform opacity-100 scale-100"
           leave="transition ease-in duration-75"
@@ -27,23 +28,26 @@ export default function Drowpdown() {
             <div className="px-1 py-1 ">
               <Menu.Item>
                 {({ active }) => (
-                  <button
-                    className={`${active ? 'text-black' : 'text-gray-600'
-                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                  >
-                    {active ? (
-                      <AiTwotoneSetting className="w-5 h-5 ml-2 mr-2"/>
-                    ) : (
-                      <AiOutlineSetting className="w-5 h-5 ml-2 mr-2"/>
-                    )}
-                    Settings
-                  </button>
+                  
+                    <button
+                      className={`${active ? 'text-black' : 'text-gray-600'
+                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                    >
+                      {active ? (
+                        <AiTwotoneSetting className="w-5 h-5 ml-2 mr-2"/>
+                      ) : (
+                        <AiOutlineSetting className="w-5 h-5 ml-2 mr-2"/>
+                      )}
+                      Settings
+                    </button>
+                  
                 )}
               </Menu.Item>
             </div>
             <div className="px-1 py-1 ">
               <Menu.Item>
                 {({ active }) => (
+                  <Link to="/Login">
                   <button
                     className={`${active ? 'text-black' : 'text-gray-600'
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
@@ -55,6 +59,7 @@ export default function Drowpdown() {
                     )}
                     Log Out
                   </button>
+                  </Link>
                 )}
               </Menu.Item>
             </div>
