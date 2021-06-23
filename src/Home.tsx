@@ -5,7 +5,7 @@ import './Home.css';
 import Watchlist from './components/Watchlist/Watchlist';
 import IndustryChart from "./components/Charts/IndustryChart";
 import { useState } from 'react';
-import { GetPortfolio } from './api/GetPortfolio';
+import { GetPortfolio } from './api/getEndpoints';
 
 
 
@@ -13,7 +13,6 @@ import { GetPortfolio } from './api/GetPortfolio';
 function Home() {
 
 
-let auxstockList = GetPortfolio()!.wallet
 
 	//OBSOLETE: Se obtiene de la API
 	const stockList = [
