@@ -1,6 +1,6 @@
 .loginContainer{
-	background-color: #FF3CAC;
-	background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+	background-color: #485461;
+	background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
 	height: 100%;
 	width: 100%;
 }
@@ -12,17 +12,25 @@
 	transform: translate(-50%, -60%);
 	background: white;
 	width: 30%;
-	height: 45%;
+	height: 50%;
 }
 
 
 .loginContainer .button{
-	background-color: #FF3CAC;
-	background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+	background-color: #485461;
+	background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
 	height: 100%;
 	width: 100%;
 }
 
 .loginContainer .button:hover{
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.loginContainer .logo{
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+	margin-top: -150px;
+	
 }
