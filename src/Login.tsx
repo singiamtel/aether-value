@@ -1,15 +1,29 @@
 import './Login.css';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { Link, useHistory } from "react-router-dom";
+import { login } from "./api/getEndpoints"
 
 interface Values {
-	user:string,
+	username:string,
 	password: string
 }
 
 function Login() {
 	let history = useHistory();
-return (
+  const handleSubmit = async (values: Values, { setSubmitting }: FormikHelpers<Values> ) => {
+    if(await login(values.username, values.password)){
+      console.log("login successful");
+      setTimeout(() => {
+        history.push("/home")
+        history.go(0)
+        setSubmitting(false)
+      }, 500)
+    }
+    else{
+      console.log("login failed");
+    }
+  }
+  return (
 	<div className="loginContainer">
 		<div className="box rounded-2xl shadow-2xl">
 			<img className="logo" src="/logo_white.png" alt="logo" />
@@ -19,20 +33,11 @@ return (
 			<div>
 				<Formik 
 					initialValues={{
-						user:"",
+						username:"",
 						password:""
 					}}
 					
-					onSubmit={(
-					values: Values,
-					{ setSubmitting }: FormikHelpers<Values> ) => {
-					setTimeout(() => {
-						history.push("/home");
-						
-
-						setSubmitting(false)
-					}, 500)
-					}}
+					onSubmit={handleSubmit}
 				>	
 					<Form className="flex flex-col items-center">
 						<p className={"px-4 py-2 text-black flex flex-col items-start w-1/2"}>
