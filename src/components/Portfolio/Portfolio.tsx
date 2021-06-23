@@ -75,12 +75,13 @@ const Portfolio =({name,addRow,portfolio,onDelete}:Portfolio) => {
 			<div className="PortfolioHeader row-span-1">
 				<div className="item">{numberOfStocks} Assets</div>
 				<div className="item">
-					<button className={"addStock"} onClick={togglePopup}>
+					{/* <button className={"addStock"} onClick={togglePopup}>
 						<div className="px-3">
 							<ImPlus style={{fontSize:20}}/>
 						</div>
 						Añadir
-					</button>
+					</button> */}
+					<AddStock addRow={addRow} popUpState={popupAddStockVisible} togglePopUpState={togglePopup}/>
 				</div>
 				<div className="item"></div>
 				<div className="item"></div>
@@ -92,7 +93,7 @@ const Portfolio =({name,addRow,portfolio,onDelete}:Portfolio) => {
 				<div className="item"></div>
 				<div className="item"></div>
 				<div className="item"></div>
-				<AddStock addRow={addRow} popUpState={popupAddStockVisible} togglePopUpState={togglePopup}/>
+				
 			</div>
 		</div>
 	);

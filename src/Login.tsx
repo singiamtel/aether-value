@@ -12,6 +12,7 @@ function Login() {
 return (
 	<div className="loginContainer">
 		<div className="box rounded-3xl shadow-2xl">
+			<img className="logo" src="/logo_white.png" alt="logo" />
 			<h1 className="font-sans text-3xl text-center p-10">
 				<b>Welcome.</b> Please, sign in.
 			</h1>
