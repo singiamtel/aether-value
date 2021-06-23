@@ -1,5 +1,5 @@
 import { Formik, Field, Form, FormikHelpers } from 'formik';
-import { ImCross, ImPlus } from 'react-icons/im';
+import { ImPlus } from 'react-icons/im';
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 
@@ -16,15 +16,13 @@ interface Values {
 	buyingPrice:number
 }
 
-
-type AddStockProps = {
+interface AddStockProps {
 	addRow: (ticker: string, quant: number, date: string) => void,
-	popUpState: boolean,
-	togglePopUpState: () => void,
+	
 }
 
-function AddStock({addRow,popUpState,togglePopUpState}:AddStockProps) {
-  let [isOpen, setIsOpen] = useState(true)
+function AddStock({addRow}:AddStockProps) {
+  let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
     setIsOpen(false)
@@ -110,9 +108,7 @@ function AddStock({addRow,popUpState,togglePopUpState}:AddStockProps) {
                       values: Values,
                       { setSubmitting }: FormikHelpers<Values> ) => {
                         setTimeout(() => {
-
                           addRow(values.ticker, values.quant, values.date)
-
                           setSubmitting(false)
                         }, 500)
                       }}

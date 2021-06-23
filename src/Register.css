@@ -1,34 +1,35 @@
-.loginContainer{
+.registerContainer{
 	background-color: #485461;
 	background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
 	height: 100%;
 	width: 100%;
+	
 }
 
 
-.loginContainer .box{
+.registerContainer .box{
 	position: fixed;
 	top: 50%;
 	left: 50%;	
 	transform: translate(-50%, -60%);
 	background: white;
 	width: 30%;
-	height: 45%;
+	height: 55%;
 }
 
 
-.loginContainer .button{
+.registerContainer .button{
 	background-color: #485461;
 	background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
 	height: 100%;
 	width: 100%;
 }
 
-.loginContainer .button:hover{
+.registerContainer .button:hover{
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.loginContainer .logo{
+.registerContainer .logo{
     margin-left: auto;
     margin-right: auto;
     width: 30%;
