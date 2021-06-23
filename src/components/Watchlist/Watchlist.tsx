@@ -42,13 +42,13 @@ const stockList = [
 	
 ]
 
-type Watchlist = {
+type WatchlistProps = {
 	name: string,
 }
 
-var numberOfRows:number = 0
+let numberOfRows:number = 0
 
-function Watchlist({name}:Watchlist) {
+function Watchlist({name}:WatchlistProps) {
 	numberOfRows = 0;
 	return (
 		<div className='grid grid-rows-10 h-full'>
@@ -61,7 +61,7 @@ function Watchlist({name}:Watchlist) {
 				<div className="item">Price ($)</div>
 			</div>
 			<div className="WatchlistBody row-span-1">
-				{stockList.map((stock) => (<WatchlistRow rowNumber={numberOfRows++} ticker={stock.ticker} targetPrice={stock.targetPrice} price={stock.price}/>))}
+				{stockList.map((stock, stockidx) => (<WatchlistRow key={stockidx} rowNumber={numberOfRows++} ticker={stock.ticker} targetPrice={stock.targetPrice} price={stock.price}/>))}
 			</div>
 			<div className="WatchlistHeader row-span-1">
 				<div className="item">{numberOfRows} Assets</div>

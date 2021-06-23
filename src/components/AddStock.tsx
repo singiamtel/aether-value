@@ -16,14 +16,14 @@ interface Values {
 }
 
 
-type AddStock = {
+type AddStockProps = {
 	addRow: (ticker: string, quant: number, date: string) => void,
 	popUpState: boolean,
 	togglePopUpState: () => void,
 }
 
 
-function AddStock({addRow,popUpState,togglePopUpState}:AddStock) {
+function AddStock({addRow,popUpState,togglePopUpState}:AddStockProps) {
 	
 	return (
 		<div className={"popup " + (popUpState ? " " : "hidden")}>

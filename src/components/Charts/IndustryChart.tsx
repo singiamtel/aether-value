@@ -2,7 +2,7 @@ import { Doughnut } from 'react-chartjs-2';
 
 
 
-type IndustryChart = {
+type IndustryChartProps = {
 	portfolio:{
 		name: string;
 		ticker: string;
@@ -19,7 +19,7 @@ type IndustryChart = {
 	}[],
 }
 
-const IndustryChart = ({portfolio}:IndustryChart) => {
+const IndustryChart = ({portfolio}:IndustryChartProps) => {
 
 /* Emulamos un diccionario */
 const dict: any = {}

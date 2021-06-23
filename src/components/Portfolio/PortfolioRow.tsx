@@ -1,7 +1,7 @@
 import './PortfolioRow.css';
 import {FaTimes} from 'react-icons/fa'
 
-type PortfolioRow = {
+type PortfolioRowProps = {
 	rowNumber: number,
 	onDelete: (ticker: string) => void
 	stock: string,
@@ -19,9 +19,7 @@ type PortfolioRow = {
 	totalPortfolio: number
 }
 
-
-
-function PortfolioRow({rowNumber, onDelete, stock, ticker, industry, targetPrice, price, closingPrice, quantity, transactions, totalPortfolio}:PortfolioRow)  {
+function PortfolioRow({rowNumber, onDelete, stock, ticker, industry, targetPrice, price, closingPrice, quantity, transactions, totalPortfolio}:PortfolioRowProps)  {
 	let total:number = 0
 	let MoS:number = 0
 	const dayChange = price - closingPrice
@@ -39,7 +37,6 @@ function PortfolioRow({rowNumber, onDelete, stock, ticker, industry, targetPrice
 	const percentageOfPortfolio = (total / totalPortfolio) *100
 	const dayCuant = (dayChange*quantity)
 	const evenRow = (rowNumber % 2 === 0)
-	averageEntryPrice = (averageEntryPrice)
 	/* We maintain this math.round for BTC */
 	quantity = Math.round(quantity*100000000)/100000000
 

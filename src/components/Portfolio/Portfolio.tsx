@@ -46,7 +46,7 @@ const Portfolio =({name,addRow,portfolio,onDelete}:Portfolio) => {
 	portfolio.map((stock) => ((stock.price == -1 ? "" : numberOfStocks++)))
 
 	/* Stores the total value of the Portfolio */
-	var totalPortfolio = 0
+	let totalPortfolio = 0
 	portfolio.forEach((stock) => (totalPortfolio += (stock.price*stock.quantity)))
 
 
@@ -68,7 +68,7 @@ const Portfolio =({name,addRow,portfolio,onDelete}:Portfolio) => {
 				<div className="item"></div>
 			</div>
 			<div className="PortfolioBody row-span-6">
-				{portfolio.map((stock) => (<PortfolioRow rowNumber={numberOfRows++} onDelete={onDelete} stock={stock.name} ticker={stock.ticker} industry={stock.industry} targetPrice={stock.targetPrice} price={stock.price} closingPrice={stock.closingPrice} quantity={stock.quantity} transactions={stock.transactions} totalPortfolio={totalPortfolio}/>))}
+				{portfolio.map((stock, stockidx) => (<PortfolioRow key={stockidx} rowNumber={numberOfRows++} onDelete={onDelete} stock={stock.name} ticker={stock.ticker} industry={stock.industry} targetPrice={stock.targetPrice} price={stock.price} closingPrice={stock.closingPrice} quantity={stock.quantity} transactions={stock.transactions} totalPortfolio={totalPortfolio}/>))}
 				
 
 			</div>

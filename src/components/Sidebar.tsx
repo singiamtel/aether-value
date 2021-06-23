@@ -6,11 +6,11 @@ import { FaRegEye } from "react-icons/fa";
 import {BsListNested} from "react-icons/bs";
 import { Link } from 'react-router-dom';
 
-type Sidebar ={
+type SidebarProps ={
 	activeElement: string
 }
 
-function Sidebar({activeElement}:Sidebar) {
+function Sidebar({activeElement}:SidebarProps) {
 	
 	return (
 		<div className='sidebarContainer'>

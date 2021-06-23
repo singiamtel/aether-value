@@ -1,15 +1,15 @@
 import './WatchlistRow.css';
 
-type WatchlistRow = {
+type WatchlistRowProps = {
 	rowNumber: number,
 	ticker: string,
 	targetPrice: number,
 	price: number,
 }
 
-var MoS:number
+let MoS:number
 
-function WatchlistRow({rowNumber, ticker, targetPrice, price }:WatchlistRow)  {
+function WatchlistRow({rowNumber, ticker, targetPrice, price }:WatchlistRowProps)  {
 	MoS = Math.round((targetPrice/price -1)*10000)/100;
 	const evenRow = (rowNumber % 2 === 0)
 

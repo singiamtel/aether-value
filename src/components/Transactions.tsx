@@ -900,7 +900,7 @@ return (
 					<div className="item">Transaction Total</div>
 				</div>
 				<div className="TransactionBody row-span-6">
-					{transactions.map((stock) => (stock.transactions.map((trans) => (<TransactionRow rowNumber={numberOfRows++} stock={stock.name} ticker={stock.ticker} industry={stock.industry} buyingPrice={trans.buyingPrice} quantity={trans.quant} date={trans.date}/>))))}
+					{transactions.map((stock) => (stock.transactions.map((trans, transidx) => (<TransactionRow key={transidx} rowNumber={numberOfRows++} stock={stock.name} ticker={stock.ticker} industry={stock.industry} buyingPrice={trans.buyingPrice} quantity={trans.quant} date={trans.date}/>))))}
 					
 
 				</div>

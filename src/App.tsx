@@ -1,9 +1,7 @@
-import { BrowserRouter, Redirect, Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Redirect, Switch, Route } from "react-router-dom";
 import Home from "./Home"
 import Login from "./Login"
 import Transaction from "./components/Transactions"
-
-
 
 function App() {
   return (

@@ -1,7 +1,7 @@
 import './TransactionRow.css';
 import {FaTimes} from 'react-icons/fa'
 
-type TransactionRow = {
+type TransactionRowProps = {
 	rowNumber: number,
 	stock: string,
 	ticker: string,
@@ -11,9 +11,7 @@ type TransactionRow = {
 	date:string,
 }
 
-
-
-function TransactionRow({rowNumber, stock, ticker, industry, buyingPrice, quantity, date}:TransactionRow)  {
+function TransactionRow({rowNumber, stock, ticker, industry, buyingPrice, quantity, date}:TransactionRowProps)  {
 	
 	const evenRow = (rowNumber % 2 === 0)
 	/* We maintain this for BTC */
