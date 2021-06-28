@@ -6,7 +6,7 @@ type PortfolioRowProps = {
 	ticker: string,
 	industry: string,
 	targetPrice: number,
-	price: number,
+	price: string,
 	closingPrice: number,
 	quantity: number,
 	totalPortfolio: number
@@ -15,16 +15,16 @@ type PortfolioRowProps = {
 function PortfolioRow({rowNumber, ticker, industry, targetPrice, price, closingPrice, quantity, totalPortfolio}:PortfolioRowProps)  {
 	let total:number = 0
 	let MoS:number = 0
-	const dayChange = price - closingPrice
+  let parsedPrice = parseFloat(price)
+	const dayChange = parsedPrice - closingPrice
 	let invested:number = 0
 	let averageEntryPrice:number = 0
 	
-	alert(ticker)
 	/* transactions.map((trans) => (invested += trans.quant*trans.buyingPrice))
 	transactions.map((trans) => (averageEntryPrice += ((trans.quant*trans.buyingPrice)/quantity))) */
 
-	total = price * quantity
-	MoS = (targetPrice/price -1)*100
+	total = parsedPrice * quantity
+	MoS = (targetPrice/parsedPrice -1)*100
 
 	const totalChange = (total - invested)
 	const totalChangePercentage = (totalChange/invested)*100
@@ -41,7 +41,7 @@ function PortfolioRow({rowNumber, ticker, industry, targetPrice, price, closingP
 			<div className="item">$ {targetPrice.toFixed(2)}</div>														
 			<div className="item border-r">{MoS.toFixed(2)} % </div>														
 			<div className="item border-r">$ {averageEntryPrice.toFixed(2)} </div>														
-			<div className="item">$ {price.toFixed(2)} </div>															
+			<div className="item">$ {parsedPrice.toFixed(2)} </div>
 			<div className="item">{quantity}</div>																
 			<div className={"item "+ (dayCuant > 0 ? 'green' : 'red') }><b>$ {dayCuant.toFixed(2)} </b></div>				
 			<div className="item">$ {total.toFixed(2)}</div>															
