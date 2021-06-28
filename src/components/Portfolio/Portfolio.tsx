@@ -2,10 +2,10 @@ import AddStock from '../AddStock';
 import './Portfolio.css';
 import PortfolioRow from "./PortfolioRow";
 
-
-
 type PortfolioProps = {
-	portfolio: { amount: number; targetPrice: number; api: { meta: { symbol: string; currency: string; exchange: string; type: string; }; values: { datetime: string; open: number; close: number; }[]; status: string; }; }[]
+  portfolio: {
+    amount: number; targetPrice: number; api: { meta: { symbol: string; currency: string; exchange: string; type: string; }; values: { datetime: string; open: number; close: number; }[]; status: string; }; 
+  }[]
 }
 
 
@@ -19,6 +19,7 @@ const Portfolio =({portfolio}:PortfolioProps) => {
 	/* Stores the total value of the Portfolio */
 	let totalPortfolio = 0
 	portfolio.map((stock)=> (totalPortfolio += stock.amount * stock.api.values[0].close) )
+  console.log("totalPortfolio",totalPortfolio);
 
 	return (
 		<div className='grid grid-rows-8'>
@@ -38,7 +39,7 @@ const Portfolio =({portfolio}:PortfolioProps) => {
 			</div>
 			<div className="PortfolioBody row-span-6">
 				
-				{portfolio.map((stock, stockidx) => (<PortfolioRow key={stockidx} rowNumber={numberOfRows++} ticker={stock.api.meta.symbol} industry={stock.api.meta.type} targetPrice={stock.targetPrice} price={stock.api.values[0].close} closingPrice={stock.api.values[1].close} quantity={stock.amount} totalPortfolio={totalPortfolio}/>))}
+				{portfolio.map((stock, stockidx) => (<PortfolioRow key={stockidx} rowNumber={numberOfRows++} ticker={stock.api.meta.symbol} industry={stock.api.meta.type} targetPrice={stock.targetPrice} price={stock.api.values[0].close.toString()} closingPrice={stock.api.values[1].close} quantity={stock.amount} totalPortfolio={totalPortfolio}/>))}
 				
 			</div>
 			<div className="PortfolioHeader row-span-1">
