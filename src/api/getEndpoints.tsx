@@ -1,37 +1,6 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { PortfolioAuxType, PortfolioType, PortfolioResponseType } from '../models/portfolio.interface';
-import {post, apiRoute} from './api'
-
-/* Portfolio vacío a devolver en caso de error */
-const emptyPortfolio:PortfolioAuxType = {
-    "wallet": [
-        {
-        "amount": 0,
-        "targetPrice": 0,
-        "api": {
-        "meta": {
-            "symbol": "",
-            "currency": "",
-            "exchange": "",
-            "type": ""
-        },
-        "values": [
-            {
-            "datetime": "",
-            "open": 0,
-            "close": 0
-            },
-            {
-            "datetime": "",
-            "open":0,
-            "close": 0
-            }
-        ],
-        "status": ""
-        }
-    }]
-}
+import {apiRoute} from './api'
+import {PortfolioResponseType} from '../models/portfolio.interface'
 
 const translateErrorCode = (code:number) => {
   switch(code){
@@ -43,8 +12,10 @@ const translateErrorCode = (code:number) => {
 export const login = async (user:string, pass:string) => {
   const response = await axios.post(apiRoute+"/login", {username:user, password:pass});
   if(response.data.status === "success"){
-    sessionStorage.setItem("token", response.data.token)
-    sessionStorage.setItem("wallets", JSON.stringify(response.data.wallets))
+    if(sessionStorage.setItem("token", response.data.token) === null)
+      console.log("Recieved null object as token")
+    else if(sessionStorage.setItem("wallets", JSON.stringify(response.data.wallets)) === null)
+      console.log("Recieved null object as wallets")
     return true
   }
   return false
@@ -61,7 +32,7 @@ export const register = async (user:string, pass:string) => {
   return false
 }
 
-export const GetPortfolio = async (token:string) => {
+export const GetPortfolios = async (token:string) => {
   let portfolio = await axios.post(apiRoute+"/wallets", {token:token});
     if(portfolio.data.status != "success" && portfolio.data.errorCode){
       let errorMsg = translateErrorCode(portfolio.data.errorCode)
@@ -72,3 +43,13 @@ export const GetPortfolio = async (token:string) => {
     return portfolio
 }
 
+export const GetPortfolioContents = async (token:string,portfolioName:string) => {
+  let portfolioContents:PortfolioResponseType = await axios.post(apiRoute+"/wallet/fetch/"+portfolioName, {token:token});
+    if(portfolioContents.data.status != "success" && portfolioContents.data.errorCode){
+      let errorMsg = translateErrorCode(portfolioContents.data.errorCode)
+      if(errorMsg !== "Not found"){
+        portfolioContents.data.message = errorMsg
+      }
+    }
+  return portfolioContents.data
+}

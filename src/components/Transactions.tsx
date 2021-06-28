@@ -884,7 +884,7 @@ return (
 		</div>
 
 		<div className="Topbar">
-			<Topbar portfolio={transactions} totalRealizedGains={totalRealizedGains} />
+			{/* <Topbar portfolio={transactions} totalRealizedGains={totalRealizedGains} /> */}
 		</div>
 		{/* Main */}
 		<div className="Main p-7">

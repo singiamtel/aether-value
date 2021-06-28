@@ -16,12 +16,7 @@ interface Values {
 	buyingPrice:number
 }
 
-interface AddStockProps {
-	addRow: (ticker: string, quant: number, date: string) => void,
-	
-}
-
-function AddStock({addRow}:AddStockProps) {
+function AddStock() {
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -108,7 +103,7 @@ function AddStock({addRow}:AddStockProps) {
                       values: Values,
                       { setSubmitting }: FormikHelpers<Values> ) => {
                         setTimeout(() => {
-                          addRow(values.ticker, values.quant, values.date)
+                          
                           setSubmitting(false)
                         }, 500)
                       }}

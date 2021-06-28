@@ -5,27 +5,27 @@ import Register from "./Register"
 import Transaction from "./components/Transactions"
 
 function App() {
-    console.log(sessionStorage.getItem("token"));
-  if(sessionStorage.getItem("token") === null){
+    console.log(sessionStorage.getItem("token"))
+  if(sessionStorage.getItem("token") !== null){
   return (
-    <>
-      <Redirect to="/login" />
-      <Login/>
-    </>
+    <div className={"h-full w-full"}>
+      <Switch>
+        <Route path="/" component={Home} exact />
+        <Route path="/home" component={Home} />
+        <Route path="/transactions" component={Transaction} />
+        <Route path="/login" component={Login} />
+        <Route path="*"> </Route>
+      </Switch>
+    </div>
   )
   }
   return (
-        <div className={"h-full w-full"}>
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path={["/home", "/"]}>
-              <Redirect from="/" to="/home" />
-              <Home/>
-            </Route>
-            <Route path="/transactions" component={Transaction} />
-            <Route path="*"> </Route>
-          </Switch>
-        </div>
+      <>
+        <Route path={["/login", "/"]}>
+          <Redirect from="/" to="/login" />
+          <Login/>
+        </Route>
+        <Route path="/register" component={Register} />
+      </>
   )}
 export default App;

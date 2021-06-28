@@ -3,20 +3,7 @@ import { Doughnut } from 'react-chartjs-2';
 
 
 type IndustryChartProps = {
-	portfolio:{
-		name: string;
-		ticker: string;
-		industry: string;
-		price: number;
-		closingPrice: number;
-		targetPrice: number;
-		quantity: number;
-		transactions: {
-			quant: number;
-			date: string;
-			buyingPrice: number;
-		}[];
-	}[],
+	portfolio:{ amount: number; targetPrice: number; api: { meta: { symbol: string; currency: string; exchange: string; type: string; }; values: { datetime: string; open: number; close: number; }[]; status: string; }; }[]
 }
 
 const IndustryChart = ({portfolio}:IndustryChartProps) => {
@@ -29,12 +16,12 @@ const data = []
 
 /* Stores the total value of the Portfolio */
 var totalPortfolio = 0
-portfolio.forEach((stock) => (totalPortfolio += (stock.price*stock.quantity)))
+/* portfolio.forEach((stock) => (totalPortfolio += (stock.price*stock.quantity))) */
 /* Rellenamos las industrias */
-portfolio.forEach((stock) => (
+/* portfolio.forEach((stock) => (
   (dict[stock.industry] === undefined) ? dict[stock.industry]=((stock.price*stock.quantity)/totalPortfolio * 100) : dict[stock.industry]+=((stock.price*stock.quantity)/totalPortfolio * 100)
   )
-)
+) */
 
 /* Recorremos nuestro diccionario */
 for(let key in dict) {

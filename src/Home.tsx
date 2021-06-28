@@ -5,10 +5,36 @@ import './Home.css';
 import Watchlist from './components/Watchlist/Watchlist';
 import IndustryChart from "./components/Charts/IndustryChart";
 import { useState } from 'react';
-import { GetPortfolio } from './api/getEndpoints';
+import { GetPortfolioContents } from './api/getEndpoints';
+import {PortfolioType} from './models/portfolio.interface'
 
-
-
+const emptyPortfolio:PortfolioType[] = [
+	{
+		"amount": 0,
+		"targetPrice": 0,
+		"api": {
+			"meta": {
+				"symbol": "",
+				"currency": "",
+				"exchange": "",
+				"type": ""
+			},
+			"values": [
+				{
+				"datetime": "",
+				"open": 0,
+				"close": 0
+				},
+				{
+				"datetime": "",
+				"open":0,
+				"close": 0
+				}
+			],
+			"status": ""
+		}
+	}
+	]
 
 function Home() {
 
@@ -875,51 +901,23 @@ function Home() {
 		},
 	]
 
-//OBSOLETE: Se obtiene de la API
-let totalRealizedGains = 0
-stockList.map((stock) => ((stock.transactions.map((trans) =>(stock.quantity += trans.quant)))))
-stockList.map((stock) => ((stock.transactions.map((trans) =>(stock.quantity <= 0 ? totalRealizedGains += trans.buyingPrice*trans.quant : "")))))
-totalRealizedGains *= -1
 
-//OBSOLETE: Se obtiene de la API
-//portfolio Hook
-const [portfolio,setPortfolio] = useState(stockList.filter((stock) => stock.quantity >0))
 
-//OBSOLETE: Hay que hacer un método pra añadir transacciones. Cuando se cierre la posición, desaparece.
-//Delete Row
-const deleteRow = (ticker:string) => {
-	setPortfolio(portfolio.filter((stock) => stock.ticker !== ticker))
+
+const getPortfolio: any = async (index:number) => {
+	let portfolio = await GetPortfolioContents(sessionStorage.getItem("token")!, JSON.parse(sessionStorage.getItem('wallets')!)[index].name)
+	console.log(portfolio.wallet)
+	return portfolio.wallet
 }
 
+const [portfolio,setPortfolio] = useState<PortfolioType[]>(emptyPortfolio)
+let totalPortfolio = 0
 
-//OBSOLETE: Hay que hacer un método pra añadir transacciones. 
-//Add Row
-const addRow = (ticker:string, quant:number, date:string) => {
-	const newStock = {
-		name: ticker,
-		ticker:"",
-		industry: "",
-		targetPrice: 0,
-		price:0,
-		closingPrice: 0,
-		quantity:0,
-		transactions: [
-			{
-				quant: quant,
-				date: date,
-				buyingPrice: 0
-			},
-		]
-	}
-	stockList.push(newStock)
+setPortfolio(getPortfolio(0))
+console.log(portfolio)
+portfolio.map((stock) => (totalPortfolio += stock.amount * stock.api.values[0].close))
 
-	totalRealizedGains = 0
-	stockList[stockList.length -1].transactions.map((trans) =>(stockList[stockList.length -1].quantity += trans.quant))
-	stockList.map((stock) => ((stock.transactions.map((trans) =>(stock.quantity <= 0 ? totalRealizedGains += trans.buyingPrice*trans.quant : "")))))
-	totalRealizedGains *= -1
-	
-	setPortfolio(stockList.filter((stock) => stock.quantity >0))
-}
+
 
 return (
 	<div className="Home">
@@ -929,11 +927,11 @@ return (
 		</div>
 
 		<header className="Topbar">
-			<Topbar portfolio={portfolio} totalRealizedGains={totalRealizedGains} />
+			<Topbar totalPortfolio={totalPortfolio} />
 		</header>
 		{/* Main */}
 		<div className="Main p-7">
-			<Portfolio name={"Cartera Principal"} addRow={addRow} portfolio={portfolio} onDelete={deleteRow}/>
+			<Portfolio portfolio={portfolio}/>
 
 			
 

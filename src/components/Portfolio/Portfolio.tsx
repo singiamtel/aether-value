@@ -1,59 +1,28 @@
-import { useState } from 'react';
 import AddStock from '../AddStock';
 import './Portfolio.css';
 import PortfolioRow from "./PortfolioRow";
-import { ImPlus } from "react-icons/im";
 
 
-//OBSOLETO: usar el tipo que está en /models
-type Portfolio = {
-	name: string,
-	addRow: (ticker: string, quant: number, date: string) => void,
-	portfolio:{
-		name: string;
-		ticker: string;
-		industry: string;
-		price: number;
-		closingPrice: number;
-		targetPrice: number;
-		quantity: number;
-		transactions: {
-			quant: number;
-			date: string;
-			buyingPrice: number;
-		}[];
-	}[],
-	onDelete: (ticker: string) => void,
+
+type PortfolioProps = {
+	portfolio: { amount: number; targetPrice: number; api: { meta: { symbol: string; currency: string; exchange: string; type: string; }; values: { datetime: string; open: number; close: number; }[]; status: string; }; }[]
 }
 
 
-
-
-
-
-const Portfolio =({name,addRow,portfolio,onDelete}:Portfolio) => {
+const Portfolio =({portfolio}:PortfolioProps) => {
 	let numberOfRows = 0;
-	let numberOfStocks = 0;
-
-	//popUp Hook
-	const [popupAddStockVisible, setPopupVisible] = useState<boolean>(false)
-
-	function togglePopup() {
-		setPopupVisible(!popupAddStockVisible)
-	}
+	let portfolioName = JSON.parse(sessionStorage.getItem('wallets')!)[0].name
 
 	/* Counts the number of assets */
-	portfolio.map((stock) => ((stock.price == -1 ? "" : numberOfStocks++)))
+	portfolio.map((stock) => ( numberOfRows++ ))
 
 	/* Stores the total value of the Portfolio */
 	let totalPortfolio = 0
-	portfolio.forEach((stock) => (totalPortfolio += (stock.price*stock.quantity)))
-
+	portfolio.map((stock)=> (totalPortfolio += stock.amount * stock.api.values[0].close) )
 
 	return (
 		<div className='grid grid-rows-8'>
 			<div className='PortfolioHeader row-span-1'>
-				{/* <div className="item"><i>{name}</i></div> */}
 				<div className="item">Ticker</div>
 				<div className="item">Industry</div>
 				<div className="item">Target Price</div>
@@ -68,14 +37,14 @@ const Portfolio =({name,addRow,portfolio,onDelete}:Portfolio) => {
 				<div className="item"></div>
 			</div>
 			<div className="PortfolioBody row-span-6">
-				{portfolio.map((stock, stockidx) => (<PortfolioRow key={stockidx} rowNumber={numberOfRows++} onDelete={onDelete} stock={stock.name} ticker={stock.ticker} industry={stock.industry} targetPrice={stock.targetPrice} price={stock.price} closingPrice={stock.closingPrice} quantity={stock.quantity} transactions={stock.transactions} totalPortfolio={totalPortfolio}/>))}
 				
-
+				{portfolio.map((stock, stockidx) => (<PortfolioRow key={stockidx} rowNumber={numberOfRows++} ticker={stock.api.meta.symbol} industry={stock.api.meta.type} targetPrice={stock.targetPrice} price={stock.api.values[0].close} closingPrice={stock.api.values[1].close} quantity={stock.amount} totalPortfolio={totalPortfolio}/>))}
+				
 			</div>
 			<div className="PortfolioHeader row-span-1">
-				<div className="item">{numberOfStocks} Assets</div>
+				<div className="item">{numberOfRows} Assets</div>
 				<div className="item">
-					<AddStock addRow={addRow} />
+					<AddStock />
 				</div>
 				<div className="item"></div>
 				<div className="item"></div>
@@ -85,7 +54,7 @@ const Portfolio =({name,addRow,portfolio,onDelete}:Portfolio) => {
 				<div className="item"></div>
 				<div className="item"></div>
 				<div className="item"></div>
-				<div className="item"></div>
+				<div className="item">{portfolioName}</div>
 				<div className="item"></div>
 				
 			</div>

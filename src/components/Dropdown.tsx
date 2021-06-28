@@ -4,6 +4,15 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { AiOutlineSetting, AiTwotoneSetting } from "react-icons/ai";
 import { IoLogOutOutline, IoLogOut } from "react-icons/io5";
 import { Link } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory'
+
+
+function signOut() {
+  sessionStorage.removeItem("token");
+  const history = createHistory();
+  history.push("/login");
+  history.go(0)
+}
 
 export default function Drowpdown() {
   return (
@@ -47,8 +56,9 @@ export default function Drowpdown() {
             <div className="px-1 py-1 ">
               <Menu.Item>
                 {({ active }) => (
-                  <Link to="/Login">
+                  
                   <button
+                    onClick= {signOut}
                     className={`${active ? 'text-black' : 'text-gray-600'
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
@@ -59,7 +69,7 @@ export default function Drowpdown() {
                     )}
                     Log Out
                   </button>
-                  </Link>
+                  
                 )}
               </Menu.Item>
             </div>
