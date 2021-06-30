@@ -1,7 +1,7 @@
 .TransactionRowContainer{
     background-color: #C4C4C4;
     display: grid;
-    grid-template-columns: 20% 10% repeat(5, 2fr);
+    grid-template-columns: repeat(9, 1fr);
 }
 
 .item{

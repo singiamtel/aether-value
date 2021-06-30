@@ -1,7 +1,7 @@
 .TransactionHeader{
     color: white;
     display: grid;
-    grid-template-columns: 20% 10% repeat(5, 2fr);
+    grid-template-columns: repeat(9, 1fr);
     
 }
 
@@ -13,13 +13,12 @@
     align-items: center;
     justify-content: center;
     background-color: #20262B;
-    
 }
 
 
 
 
 .TransactionBody{
-    /* overflow-y: auto; */
+    overflow-y: auto;
     text-align: center;
 }

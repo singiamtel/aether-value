@@ -1,8 +1,8 @@
 import {  Redirect, Switch, Route } from "react-router-dom";
 import Home from "./Home"
-import Login from "./Login"
-import Register from "./Register"
-import Transaction from "./components/Transactions"
+import Login from "./components/Login/Login"
+import Register from "./components/Login/Register"
+import Transaction from "./components/Transactions/Transactions"
 
 function App() {
     console.log(sessionStorage.getItem("token"))
