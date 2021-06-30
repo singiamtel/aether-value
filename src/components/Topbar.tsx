@@ -1,33 +1,34 @@
 import Dropdown from './Dropdown';
 import './Topbar.css';
-import {PortfolioType} from '../models/portfolio.interface'
+import {PortfolioType, TransactionType} from '../models/portfolio.interface'
 
 type TopBarProps = {
-	portfolio: {
-		amount: number; targetPrice: number; api: { meta: { symbol: string; currency: string; exchange: string; type: string; }; values: { datetime: string; open: number; close: number; }[]; status: string; }; 
-	  }[]
+	portfolio:PortfolioType[]
+	transactions: TransactionType[]
 }
 
-function TopBar({portfolio}:TopBarProps) {
-	let prevTotal = 0
-	let totalInvested:number = 0
+function TopBar({portfolio, transactions}:TopBarProps) {
 
 	/* Stores the total value of the Portfolio from today and yesterday */
 	let totalPortfolio = 0
 	let prevTotalPortfolio = 0
 	portfolio.map((stock)=> (
-		totalPortfolio += stock.amount * stock.api.values[0].close, 
-		prevTotalPortfolio += stock.amount * stock.api.values[1].close)
+		totalPortfolio += stock.amount * parseFloat(stock.api.values[0].close), 
+		prevTotalPortfolio += stock.amount * parseFloat(stock.api.values[1].close))
 	)
 
 	/* Day Change */
 	let totalDayChange = totalPortfolio - prevTotalPortfolio
 	let percentageDayChange = (totalPortfolio/prevTotalPortfolio -1) *100
-	alert(percentageDayChange)
+
 
 	/* Total Change */
-	const totalChange = (totalPortfolio - totalInvested)
-	const totalChangePercentage = (totalChange/totalInvested)*100
+	let invested = 0
+	/* Sacamos el dinero total invertido */
+	transactions.map((trans) => (invested += trans.amount*trans.open_price))
+
+	const totalChange = (totalPortfolio - invested)
+	const totalChangePercentage = (totalChange/invested)*100
 
 	return (
 		<div className='text-white flex text-xs justify-center items-center h-full'>

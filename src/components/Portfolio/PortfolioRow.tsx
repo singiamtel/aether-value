@@ -1,5 +1,6 @@
 import './PortfolioRow.css';
 import {FaTimes} from 'react-icons/fa'
+import {TransactionType} from '../../models/portfolio.interface'
 
 type PortfolioRowProps = {
 	rowNumber: number,
@@ -7,23 +8,25 @@ type PortfolioRowProps = {
 	industry: string,
 	targetPrice: number,
 	price: string,
-	closingPrice: number,
+	closingPrice: string,
 	quantity: number,
 	totalPortfolio: number
+	transactions: TransactionType[]
 }
 
-function PortfolioRow({rowNumber, ticker, industry, targetPrice, price, closingPrice, quantity, totalPortfolio}:PortfolioRowProps)  {
+function PortfolioRow({rowNumber, ticker, industry, targetPrice, price, closingPrice, quantity, totalPortfolio, transactions}:PortfolioRowProps)  {
 	let total:number = 0
 	let MoS:number = 0
  	let parsedPrice = parseFloat(price)
-	const dayChange = parsedPrice - closingPrice
+	const dayChange = parsedPrice - parseFloat(closingPrice)
 	let invested:number = 0
 	let averageEntryPrice:number = 0
 	
 	
-	/* NECESARIO TENER TRANSACCIONES
-	transactions.map((trans) => (invested += trans.quant*trans.buyingPrice))
-	transactions.map((trans) => (averageEntryPrice += ((trans.quant*trans.buyingPrice)/quantity))) */
+	/* Sacamos el dinero invertido en esta posición */
+	transactions.map((trans) => (invested += trans.amount*trans.open_price))
+	/* Sacamos el precio medio de compra de la acción */
+	transactions.map((trans) => (averageEntryPrice += ((trans.amount*trans.open_price)/quantity)))
 
 	total = parsedPrice * quantity
 	MoS = (targetPrice/parsedPrice -1)*100
@@ -33,7 +36,7 @@ function PortfolioRow({rowNumber, ticker, industry, targetPrice, price, closingP
 	const percentageOfPortfolio = (total / totalPortfolio) *100
 	
 	const dayCuant = (dayChange*quantity)
-	const dayCuantPercentage = (dayChange / closingPrice) *100
+	const dayCuantPercentage = (dayChange / parseFloat(closingPrice)) *100
 	const evenRow = (rowNumber % 2 === 0)
 	/* We maintain this math.round for BTC */
 	quantity = Math.round(quantity*100000000)/100000000
@@ -43,7 +46,7 @@ function PortfolioRow({rowNumber, ticker, industry, targetPrice, price, closingP
 			<div id="head" className="item">{ticker}</div>														
 			<div className="item border-r">{industry}</div>														
 			<div className="item">$ {targetPrice.toFixed(2)}</div>														
-			<div className="item border-r">{MoS.toFixed(2)} % </div>														
+			<div className={"item border-r "+ (MoS > 5 ? 'green' : 'orange') }>{MoS.toFixed(2)} % </div>														
 			<div className="item border-r">$ {averageEntryPrice.toFixed(2)} </div>														
 			<div className="item">$ {parsedPrice.toFixed(2)} </div>
 			<div className="item">{quantity}</div>																

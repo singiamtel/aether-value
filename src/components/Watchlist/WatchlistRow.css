@@ -1,7 +1,7 @@
 .WatchlistRowContainer{
     background-color: #C4C4C4;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr) 5%;
     
 }
 
@@ -16,7 +16,7 @@
 }
 
 .WatchlistRowContainer .even .item{
-    background-color: red;
+    background-color: #F7F8F9;
 }
 .WatchlistRowContainer .odd .item{
     background-color: #FFFFFF;

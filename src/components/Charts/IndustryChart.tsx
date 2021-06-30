@@ -1,9 +1,9 @@
 import { Doughnut } from 'react-chartjs-2';
-
+import {PortfolioType} from '../../models/portfolio.interface'
 
 
 type IndustryChartProps = {
-	portfolio:{ amount: number; targetPrice: number; api: { meta: { symbol: string; currency: string; exchange: string; type: string; }; values: { datetime: string; open: number; close: number; }[]; status: string; }; }[]
+	portfolio:PortfolioType[]
 }
 
 const IndustryChart = ({portfolio}:IndustryChartProps) => {
@@ -16,12 +16,12 @@ const data = []
 
 /* Stores the total value of the Portfolio */
 var totalPortfolio = 0
-/* portfolio.forEach((stock) => (totalPortfolio += (stock.price*stock.quantity))) */
+portfolio.forEach((stock) => (totalPortfolio += (parseFloat(stock.api.values[0].close)*stock.amount)))
 /* Rellenamos las industrias */
-/* portfolio.forEach((stock) => (
-  (dict[stock.industry] === undefined) ? dict[stock.industry]=((stock.price*stock.quantity)/totalPortfolio * 100) : dict[stock.industry]+=((stock.price*stock.quantity)/totalPortfolio * 100)
+portfolio.forEach((stock) => (
+  (dict[stock.api.meta.type] === undefined) ? dict[stock.api.meta.type]=((parseFloat(stock.api.values[0].close)*stock.amount)/totalPortfolio * 100) : dict[stock.api.meta.type]+=((parseFloat(stock.api.values[0].close)*stock.amount)/totalPortfolio * 100)
   )
-) */
+)
 
 /* Recorremos nuestro diccionario */
 for(let key in dict) {
@@ -74,7 +74,7 @@ const options = {
   return (
     <div>
       <div className='text-center text-white'>
-        <h1>Industry Diversification (%)</h1>
+        <h1>Asset Diversification (%)</h1>
       </div>
       <Doughnut
         className="text-white"

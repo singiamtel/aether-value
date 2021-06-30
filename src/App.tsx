@@ -14,7 +14,7 @@ function App() {
         <Route path="/home" component={Home} />
         <Route path="/transactions" component={Transaction} />
         <Route path="/login" component={Login} />
-        <Route path="*"> </Route>
+        <Route path="*" component={Login} />
       </Switch>
     </div>
   )
@@ -25,6 +25,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Redirect from="/" to="/login" />
         <Route path="/register" component={Register} />
+        <Route path="*" component={Login} />
     </div>
   )}
 export default App;

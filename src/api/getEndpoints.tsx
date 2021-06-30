@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {apiRoute} from './api'
-import {PortfolioResponseType} from '../models/portfolio.interface'
+import {PortfolioResponseType,TransactionResponseType} from '../models/portfolio.interface'
 
 const translateErrorCode = (code:number) => {
   switch(code){
@@ -52,4 +52,15 @@ export const GetPortfolioContents = async (token:string,portfolioName:string) =>
       }
     }
   return portfolioContents.data
+}
+
+export const GetTransactions = async (token:string,portfolioName:string) => {
+  let transactions:TransactionResponseType = await axios.post(apiRoute+"/wallet/fetch/"+portfolioName+"/history", {token:token});
+    if(transactions.data.status != "success" && transactions.data.errorCode){
+      let errorMsg = translateErrorCode(transactions.data.errorCode)
+      if(errorMsg !== "Not found"){
+        transactions.data.message = errorMsg
+      }
+    }
+  return transactions.data
 }

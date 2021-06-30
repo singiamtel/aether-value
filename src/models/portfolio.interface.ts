@@ -4,6 +4,7 @@ export interface PortfolioResponseType{
     "message": string,
     errorCode?: number,
     "wallet": PortfolioType[]
+    
   }
 }
 export interface PortfolioType
@@ -20,15 +21,33 @@ export interface PortfolioType
     "values": [
       {
         "datetime": string,
-        "open": number,
-        "close": number
+        "open": string,
+        "close": string
       },
       {
         "datetime": string,
-        "open":number,
-        "close": number
+        "open":string,
+        "close": string
       }
     ],
     "status": string
   }
 }
+
+export interface TransactionResponseType{
+  data: {
+    "status": string,
+    "message": string,
+    errorCode?: number,
+    "history": TransactionType[]
+  }
+}
+export interface TransactionType
+{
+    "id": number,
+    "asset": string,
+    "amount": number,
+    "open_price": number,
+    "date": string
+}
+
