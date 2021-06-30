@@ -38,20 +38,25 @@ const emptyPortfolio:PortfolioType[] = [
 
 function Home() {
 
+  //Llama a al backend y nos devuelve un portfolio (Según el índice dado)
   const getPortfolio: any = async (index:number) => {
     let response = await GetPortfolioContents(sessionStorage.getItem("token")!, JSON.parse(sessionStorage.getItem('wallets')!)[index].name)
     console.log(response.wallet)
     setPortfolio(response.wallet)
   }
 
+  //Declaración de variables
   const [portfolio,setPortfolio] = useState<PortfolioType[]>(emptyPortfolio)
   let totalPortfolio = 0
-
+  let activePortfolio = 0
+  
+  //Para actualizar el componente cuando el backend nos devuelva el portfolio
   useEffect(() => {
-    getPortfolio(0)
-    console.log(portfolio)
-    portfolio.map((stock) => (totalPortfolio += stock.amount * stock.api.values[0].close))
+    getPortfolio(activePortfolio)
   }, [])
+  useEffect(() => {
+    portfolio.map((stock) => (totalPortfolio += stock.amount * stock.api.values[0].close))
+  }, [portfolio])
 
   return (
     <div className="Home">
@@ -61,7 +66,7 @@ function Home() {
       </div>
 
       <header className="Topbar">
-        <Topbar totalPortfolio={totalPortfolio} />
+        <Topbar portfolio={portfolio} />
       </header>
       {/* Main */}
       <div className="Main p-7">

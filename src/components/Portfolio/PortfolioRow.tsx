@@ -15,12 +15,14 @@ type PortfolioRowProps = {
 function PortfolioRow({rowNumber, ticker, industry, targetPrice, price, closingPrice, quantity, totalPortfolio}:PortfolioRowProps)  {
 	let total:number = 0
 	let MoS:number = 0
-  let parsedPrice = parseFloat(price)
+ 	let parsedPrice = parseFloat(price)
 	const dayChange = parsedPrice - closingPrice
 	let invested:number = 0
 	let averageEntryPrice:number = 0
 	
-	/* transactions.map((trans) => (invested += trans.quant*trans.buyingPrice))
+	
+	/* NECESARIO TENER TRANSACCIONES
+	transactions.map((trans) => (invested += trans.quant*trans.buyingPrice))
 	transactions.map((trans) => (averageEntryPrice += ((trans.quant*trans.buyingPrice)/quantity))) */
 
 	total = parsedPrice * quantity
@@ -29,7 +31,9 @@ function PortfolioRow({rowNumber, ticker, industry, targetPrice, price, closingP
 	const totalChange = (total - invested)
 	const totalChangePercentage = (totalChange/invested)*100
 	const percentageOfPortfolio = (total / totalPortfolio) *100
+	
 	const dayCuant = (dayChange*quantity)
+	const dayCuantPercentage = (dayChange / closingPrice) *100
 	const evenRow = (rowNumber % 2 === 0)
 	/* We maintain this math.round for BTC */
 	quantity = Math.round(quantity*100000000)/100000000
@@ -43,7 +47,7 @@ function PortfolioRow({rowNumber, ticker, industry, targetPrice, price, closingP
 			<div className="item border-r">$ {averageEntryPrice.toFixed(2)} </div>														
 			<div className="item">$ {parsedPrice.toFixed(2)} </div>
 			<div className="item">{quantity}</div>																
-			<div className={"item "+ (dayCuant > 0 ? 'green' : 'red') }><b>$ {dayCuant.toFixed(2)} </b></div>				
+			<div className={"item "+ (dayCuant > 0 ? 'green' : 'red') }><b>$ {dayCuant.toFixed(2)} ({dayCuantPercentage.toFixed(2)}%) </b></div>				
 			<div className="item">$ {total.toFixed(2)}</div>															
 			<div className={"item border-r "+ (totalChange > 0 ? 'green' : 'red') }><b>$ {totalChange.toFixed(2)} ({totalChangePercentage.toFixed(2)}%)</b></div>			
 			<div className="item border-r">{percentageOfPortfolio.toFixed(2)} %</div>		

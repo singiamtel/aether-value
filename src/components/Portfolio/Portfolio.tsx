@@ -13,18 +13,14 @@ const Portfolio =({portfolio}:PortfolioProps) => {
 	let numberOfRows = 0;
 	let portfolioName = JSON.parse(sessionStorage.getItem('wallets')!)[0].name
 
-	/* Counts the number of assets */
-	portfolio.map((stock) => ( numberOfRows++ ))
-
 	/* Stores the total value of the Portfolio */
 	let totalPortfolio = 0
 	portfolio.map((stock)=> (totalPortfolio += stock.amount * stock.api.values[0].close) )
-  console.log("totalPortfolio",totalPortfolio);
-
+ 
 	return (
 		<div className='grid grid-rows-8'>
 			<div className='PortfolioHeader row-span-1'>
-				<div className="item">Ticker</div>
+				<div className="item">{portfolioName}</div>
 				<div className="item">Industry</div>
 				<div className="item">Target Price</div>
 				<div className="item">MoS</div>
@@ -55,7 +51,7 @@ const Portfolio =({portfolio}:PortfolioProps) => {
 				<div className="item"></div>
 				<div className="item"></div>
 				<div className="item"></div>
-				<div className="item">{portfolioName}</div>
+				<div className="item"></div>
 				<div className="item"></div>
 				
 			</div>

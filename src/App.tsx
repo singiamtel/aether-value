@@ -20,12 +20,11 @@ function App() {
   )
   }
   return (
-      <>
-        <Route path={["/login", "/"]}>
-          <Redirect from="/" to="/login" />
-          <Login/>
-        </Route>
+    <div className={"h-full w-full"}>
+        <Route path="/" component={Login} exact />
+        <Route path="/login" component={Login} />
+        <Redirect from="/" to="/login" />
         <Route path="/register" component={Register} />
-      </>
+    </div>
   )}
 export default App;

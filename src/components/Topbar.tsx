@@ -3,20 +3,29 @@ import './Topbar.css';
 import {PortfolioType} from '../models/portfolio.interface'
 
 type TopBarProps = {
-	totalPortfolio:number
+	portfolio: {
+		amount: number; targetPrice: number; api: { meta: { symbol: string; currency: string; exchange: string; type: string; }; values: { datetime: string; open: number; close: number; }[]; status: string; }; 
+	  }[]
 }
 
-function TopBar({totalPortfolio}:TopBarProps) {
-	/* Stores the total value of the Portfolio */
-	let totalDayChange = 0
+function TopBar({portfolio}:TopBarProps) {
 	let prevTotal = 0
-	let percentageDayChange = 0
-	let dayChange = 0
 	let totalInvested:number = 0
 
-	prevTotal = totalPortfolio + totalDayChange
-	percentageDayChange = (totalDayChange / prevTotal) *100
+	/* Stores the total value of the Portfolio from today and yesterday */
+	let totalPortfolio = 0
+	let prevTotalPortfolio = 0
+	portfolio.map((stock)=> (
+		totalPortfolio += stock.amount * stock.api.values[0].close, 
+		prevTotalPortfolio += stock.amount * stock.api.values[1].close)
+	)
 
+	/* Day Change */
+	let totalDayChange = totalPortfolio - prevTotalPortfolio
+	let percentageDayChange = (totalPortfolio/prevTotalPortfolio -1) *100
+	alert(percentageDayChange)
+
+	/* Total Change */
 	const totalChange = (totalPortfolio - totalInvested)
 	const totalChangePercentage = (totalChange/totalInvested)*100
 
