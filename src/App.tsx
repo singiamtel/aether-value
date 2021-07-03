@@ -25,7 +25,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Redirect from="/" to="/login" />
         <Route path="/register" component={Register} />
-        <Route path="*" component={Login} />
+        <Redirect from="*" to="/login" />
     </div>
   )}
 export default App;
