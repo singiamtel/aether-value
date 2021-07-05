@@ -12,6 +12,7 @@ function TopBar({portfolio, transactions}:TopBarProps) {
 	/* Stores the total value of the Portfolio from today and yesterday */
 	let totalPortfolio = 0
 	let prevTotalPortfolio = 0
+	
 	portfolio.map((stock)=> (
 		totalPortfolio += stock.amount * parseFloat(stock.api.values[0].close), 
 		prevTotalPortfolio += stock.amount * parseFloat(stock.api.values[1].close))
@@ -32,6 +33,9 @@ function TopBar({portfolio, transactions}:TopBarProps) {
 
 	return (
 		<div className='text-white flex text-xs justify-center items-center h-full'>
+			<div className='flex-initial px-7'>
+				{}
+			</div>
 			<div className='flex-initial px-7'>
 				Portfolio: 
 				<div className="text-xl"> ${totalPortfolio.toFixed(2)}</div>
@@ -54,5 +58,4 @@ function TopBar({portfolio, transactions}:TopBarProps) {
 		</div>
 	);
 }
-
 export default TopBar;

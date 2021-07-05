@@ -2,7 +2,7 @@ import {  Redirect, Switch, Route } from "react-router-dom";
 import Home from "./Home"
 import Login from "./components/Login/Login"
 import Register from "./components/Login/Register"
-import Transaction from "./components/Transactions/Transactions"
+import TransactionsPage from "./components/Transactions/TransactionsPage"
 
 function App() {
     console.log(sessionStorage.getItem("token"))
@@ -12,7 +12,7 @@ function App() {
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/home" component={Home} />
-        <Route path="/transactions" component={Transaction} />
+        <Route path="/transactions" component={TransactionsPage} />
         <Route path="/login" component={Login} />
         <Route path="*" component={Login} />
       </Switch>

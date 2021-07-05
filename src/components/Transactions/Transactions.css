@@ -15,7 +15,15 @@
     background-color: #20262B;
 }
 
+.descendingButton{
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
 
+.descendingButton:focus{
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
 
 
 .TransactionBody{

@@ -5,16 +5,23 @@ import { RiDashboardFill } from "react-icons/ri";
 import { FaRegEye } from "react-icons/fa";
 import {BsListNested} from "react-icons/bs";
 import { Link } from 'react-router-dom';
+import DropdownPortfolio from './DropdownPortfolio';
 
 type SidebarProps ={
-	activeElement: string
+	activeElement: string,
+	activePortfolio:number,
+	setActivePortfolio:React.Dispatch<React.SetStateAction<number>>
 }
 
-function Sidebar({activeElement}:SidebarProps) {
+function Sidebar({activeElement, activePortfolio, setActivePortfolio}:SidebarProps) {
 	
+
 	return (
 		<div className='sidebarContainer'>
 			<img id="Logo" src="/logo_white.png" alt="logo" />
+			<div className="flex items-center justify-center">
+					<DropdownPortfolio activePortfolio={activePortfolio} setActivePortfolio={setActivePortfolio}/>
+			</div>
 			<Link to="/Home">
 			<button className={activeElement === "Dashboard" ? "active": "btn"}>
 				<div className="px-7">

@@ -70,14 +70,14 @@ function Home() {
   const [portfolio,setPortfolio] = useState<PortfolioType[]>(emptyPortfolio)
   const [watchlist,setWatchlist] = useState<PortfolioType[]>(emptyPortfolio)
   const [transactions,setTransactions] = useState<TransactionType[]>(emptyTransactions)
+  const [activePortfolio, setActivePortfolio] = useState(0)
   let totalPortfolio = 0
-  let activePortfolio = 0
   let activeWatchlist = 1
   
   //Para actualizar el componente cuando el backend nos devuelva el portfolio
   useEffect(() => {
     getPortfolio(activePortfolio,activeWatchlist)
-  }, [])
+  }, [activePortfolio])
   useEffect(() => {
     portfolio.map((stock) => (totalPortfolio += stock.amount * parseFloat(stock.api.values[0].close)))
   }, [portfolio])
@@ -86,11 +86,11 @@ function Home() {
     <div className="Home">
       {/* Sidebar */}
       <div className="Sidebar">
-        <Sidebar activeElement="Dashboard"/>
+        <Sidebar activeElement="Dashboard" activePortfolio={activePortfolio} setActivePortfolio={setActivePortfolio}/>
       </div>
 
       <header className="Topbar">
-        <Topbar portfolio={portfolio} transactions={transactions}/>
+        <Topbar portfolio={portfolio} transactions={transactions} />
       </header>
       {/* Main */}
       <div className="Main p-7">

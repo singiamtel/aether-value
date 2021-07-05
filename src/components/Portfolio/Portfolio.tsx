@@ -5,13 +5,12 @@ import {PortfolioType, TransactionType} from '../../models/portfolio.interface'
 
 type PortfolioProps = {
   portfolio: PortfolioType[],
-  transactions: TransactionType[]
+  transactions: TransactionType[],
 }
 
 
 const Portfolio =({portfolio, transactions}:PortfolioProps) => {
 	let numberOfRows = 0;
-	let portfolioName = JSON.parse(sessionStorage.getItem('wallets')!)[0].name
 
 	/* Stores the total value of the Portfolio */
 	let totalPortfolio = 0
@@ -20,7 +19,7 @@ const Portfolio =({portfolio, transactions}:PortfolioProps) => {
 	return (
 		<div className='grid grid-rows-8'>
 			<div className='PortfolioHeader row-span-1'>
-				<div className="item">{portfolioName}</div>
+				<div className="item">Ticker</div>
 				<div className="item">Asset Type</div>
 				<div className="item">Target Price</div>
 				<div className="item">MoS</div>
