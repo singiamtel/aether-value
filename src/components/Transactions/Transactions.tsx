@@ -2,20 +2,24 @@ import './Transactions.css';
 import TransactionRow from './TransactionRow';
 import {TransactionType} from '../../models/portfolio.interface'
 import {VscTriangleDown,VscTriangleUp} from 'react-icons/vsc'
+import { useSelector } from 'react-redux';
+import { State } from '../../store/reducers';
+import { updateTransactions } from '../../store/action-creators';
 
 type TransactionsProps = {
-	transactions: TransactionType[],
-	setTransactions: React.Dispatch<React.SetStateAction<TransactionType[]>>,
 	descending: boolean[],
 	setDescending:React.Dispatch<React.SetStateAction<boolean[]>>
   }
 
 
-
-
-function Transactions({transactions,setTransactions, descending, setDescending}:TransactionsProps) {
+function Transactions({descending, setDescending}:TransactionsProps) {
 
 let numberOfRows = 0
+
+/* Acceso a la tienda */
+let transactions = useSelector((state:State) => state.transactions)
+
+
 
 const setDescendingSingular = (index:number) => {
 	let value = !descending[index]
@@ -28,9 +32,9 @@ const setDescendingSingular = (index:number) => {
 	setDescending(aux)
 
 	if (descending[index])
-	 setTransactions(sortingFunction(index,transactions).reverse()) 
+		updateTransactions(sortingFunction(index,transactions).reverse()) 
 	else
-	 setTransactions(sortingFunction(index,transactions))
+		updateTransactions(sortingFunction(index,transactions))
 }
 
 const sortingFunction = (index:number, transactions: TransactionType[]) => {

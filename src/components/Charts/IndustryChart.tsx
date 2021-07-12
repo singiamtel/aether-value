@@ -1,26 +1,31 @@
 import { Doughnut } from 'react-chartjs-2';
-import {PortfolioType} from '../../models/portfolio.interface'
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { emptyPortfolio, emptyTransactions } from '../../models/emptyModels';
+import { State } from '../../store/reducers';
+import { actionCreators } from '../../store/store';
 
 
-type IndustryChartProps = {
-	portfolio:PortfolioType[]
-}
+const IndustryChart = () => {
 
-const IndustryChart = ({portfolio}:IndustryChartProps) => {
+/* Acceso a la tienda */
+let portfolio = useSelector((state:State) => state.portfolio)
+let totalPortfolio = useSelector((state:State) => state.portfolioTotal)
+
+
+/* Usamos un portfolio vacío mientras se resuelve la request*/
+if(portfolio == undefined)
+portfolio = emptyPortfolio
+
 
 /* Emulamos un diccionario */
 const dict: any = {}
 const labels = []
 const data = []
 
-
-/* Stores the total value of the Portfolio */
-var totalPortfolio = 0
-portfolio.forEach((stock) => (totalPortfolio += (parseFloat(stock.api.values[0].close)*stock.amount)))
 /* Rellenamos las industrias */
 portfolio.forEach((stock) => (
-  (dict[stock.api.meta.type] === undefined) ? dict[stock.api.meta.type]=((parseFloat(stock.api.values[0].close)*stock.amount)/totalPortfolio * 100) : dict[stock.api.meta.type]+=((parseFloat(stock.api.values[0].close)*stock.amount)/totalPortfolio * 100)
-  )
+  (dict[stock.api.meta.type] === undefined) ? dict[stock.api.meta.type]=((parseFloat(stock.api.values[0].close)*stock.amount)/totalPortfolio * 100) : dict[stock.api.meta.type]+=((parseFloat(stock.api.values[0].close)*stock.amount)/totalPortfolio * 100))
 )
 
 /* Recorremos nuestro diccionario */
@@ -54,7 +59,6 @@ const dataList = {
   
 };
 
-
 const options = {
     plugins: {
         legend: {
@@ -64,12 +68,6 @@ const options = {
         }
     }
 }
-
-
-
-
-
-
 
   return (
     <div>

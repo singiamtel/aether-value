@@ -1,0 +1,50 @@
+.Home{
+  background-color: var(--secondaryColor);
+  height: 100%;
+  width: 100%;
+}
+
+.Sidebar{
+  height: 100%;
+  width: 15%;
+  float: left;
+}
+
+.Topbar{
+  background-color: var(--primaryColor);
+  height: 7%;
+}
+
+.Main{
+  height: 93%;
+  width: 85%;
+  float: left;
+  overflow-y: auto;
+}
+
+ 
+.dataContainer{
+  background: #3E4347;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.hoursContainer{
+  background-color: var(--lightGray);
+  border-radius: 5px;
+  border: 1px solid var(--primaryColor);
+  text-align: center;
+}
+
+.hoursContainer h1{
+  font-size: 130%;
+  color:var(--primaryColor);
+  padding: 10px;
+}
+
+.submitButton{
+  background-color: var(--secondaryColor);
+  border-radius: 5px;
+  border: 1px solid var(--primaryColor);
+  text-align: center;
+}

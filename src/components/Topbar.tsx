@@ -1,30 +1,29 @@
 import Dropdown from './Dropdown';
 import './Topbar.css';
-import {PortfolioType, TransactionType} from '../models/portfolio.interface'
+import { State } from '../store/reducers';
+import { useSelector } from 'react-redux';
 
-type TopBarProps = {
-	portfolio:PortfolioType[]
-	transactions: TransactionType[]
-}
 
-function TopBar({portfolio, transactions}:TopBarProps) {
 
+function TopBar() {
 	/* Stores the total value of the Portfolio from today and yesterday */
-	let totalPortfolio = 0
 	let prevTotalPortfolio = 0
-	
-	portfolio.map((stock)=> (
-		totalPortfolio += stock.amount * parseFloat(stock.api.values[0].close), 
+
+	/* Acceso a la tienda */
+	let portfolio = useSelector((state:State) => state.portfolio)
+	let totalPortfolio = useSelector((state:State) => state.portfolioTotal)
+	let transactions = useSelector((state:State) => state.transactions)
+
+	/* Conseguimos el valor del portfolio */
+	portfolio.map((stock) => ( 
 		prevTotalPortfolio += stock.amount * parseFloat(stock.api.values[1].close))
 	)
 
 	/* Day Change */
 	let totalDayChange = totalPortfolio - prevTotalPortfolio
-	let percentageDayChange = (totalPortfolio/prevTotalPortfolio -1) *100
-
-
-	/* Total Change */
+	let percentageDayChange = (totalPortfolio/prevTotalPortfolio -1) * 100
 	let invested = 0
+
 	/* Sacamos el dinero total invertido */
 	transactions.map((trans) => (invested += trans.amount*trans.open_price))
 

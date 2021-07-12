@@ -1,21 +1,43 @@
 import AddStock from '../AddStock';
 import './Portfolio.css';
-import PortfolioRow from "./PortfolioRow";
-import {PortfolioType, TransactionType} from '../../models/portfolio.interface'
+import { useDispatch, useSelector} from "react-redux"
+import {State} from "../../store/reducers"
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../../store/store';
+import { useEffect } from 'react';
+import PortfolioRow from './PortfolioRow';
+import { emptyPortfolio, emptyTransactions } from '../../models/emptyModels';
 
-type PortfolioProps = {
-  portfolio: PortfolioType[],
-  transactions: TransactionType[],
-}
+  
+
+const Portfolio =() => {
+	let numberOfRows = 0
+
+	/* Redux */
+	const dispatch = useDispatch()
+	const { fetchPortfolio, updateTotalPortfolio, fetchTransactions } = bindActionCreators(actionCreators, dispatch)
+	/* Acceso a la tienda */
+	let portfolio = useSelector((state:State) => state.portfolio)
+	let totalPortfolio = useSelector((state:State) => state.portfolioTotal)
+	let transactions = useSelector((state:State) => state.transactions)
+	updateTotalPortfolio(portfolio)
+
+	/* Usamos un portfolio vacío mientras se resuelve la request*/
+	if(portfolio == undefined)
+		portfolio = emptyPortfolio
+	
+
+	/* Usamos un historial de transacciones vacío mientras se resuelve la request*/
+	if(transactions == undefined)
+		transactions = emptyTransactions
 
 
-const Portfolio =({portfolio, transactions}:PortfolioProps) => {
-	let numberOfRows = 0;
+	useEffect(() =>{
+		fetchPortfolio(0)
+		fetchTransactions(0)
+	},[])
+	
 
-	/* Stores the total value of the Portfolio */
-	let totalPortfolio = 0
-	portfolio.map((stock)=> (totalPortfolio += stock.amount * parseFloat(stock.api.values[0].close)) )
- 
 	return (
 		<div className='grid grid-rows-8'>
 			<div className='PortfolioHeader row-span-1'>

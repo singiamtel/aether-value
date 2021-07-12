@@ -1,5 +1,5 @@
 import './Sidebar.css';
-import './../Home.css';
+import './Home.css';
 import { RiWallet2Line } from "react-icons/ri";
 import { RiDashboardFill } from "react-icons/ri";
 import { FaRegEye } from "react-icons/fa";
@@ -19,6 +19,7 @@ function Sidebar({activeElement, activePortfolio, setActivePortfolio}:SidebarPro
 	return (
 		<div className='sidebarContainer'>
 			<img id="Logo" src="/logo_white.png" alt="logo" />
+			
 			<div className="flex items-center justify-center">
 					<DropdownPortfolio activePortfolio={activePortfolio} setActivePortfolio={setActivePortfolio}/>
 			</div>

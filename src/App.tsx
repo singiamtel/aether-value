@@ -1,11 +1,11 @@
 import {  Redirect, Switch, Route } from "react-router-dom";
-import Home from "./Home"
+import Home from "./components/Home"
 import Login from "./components/Login/Login"
 import Register from "./components/Login/Register"
 import TransactionsPage from "./components/Transactions/TransactionsPage"
 
 function App() {
-    console.log(sessionStorage.getItem("token"))
+
   if(sessionStorage.getItem("token") !== null){
   return (
     <div className={"h-full w-full"}>

@@ -17,6 +17,7 @@ export default function DropdownPortfolio({activePortfolio,setActivePortfolio}:D
     <div className="text-right">
       <Menu as="div" className="relative inline-block text-left">
         <div>
+          
           <Menu.Button className="inline-flex justify-center w-full px-10 py-2 text-xl font-medium text-white bg-black rounded-md bg-opacity-0 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             {portfolioName}
             <RiArrowDropDownLine className="w-8 h-8 ml-1 -mr-1"/>
