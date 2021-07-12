@@ -2,45 +2,6 @@ import { PortfolioType, TransactionType } from '../../models/portfolio.interface
 import { Dispatch } from "redux"
 import { GetPortfolioContents, GetTransactions } from '../../api/getEndpoints'
 
-
-const emptyPortfolio:PortfolioType[] = [
-    {
-      "amount": 0,
-      "targetPrice": 0,
-      "api": {
-        "meta": {
-          "symbol": "",
-          "currency": "",
-          "exchange": "",
-          "type": ""
-        },
-        "values": [
-          {
-            "datetime": "",
-            "open": "0",
-            "close": "0"
-          },
-          {
-            "datetime": "",
-            "open":"0",
-            "close": "0"
-          }
-        ],
-        "status": ""
-      }
-    }
-  ]
-
-const emptyTransactions: TransactionType[] = [
-  {
-    "id": 0,
-    "asset": "",
-    "amount": 0,
-    "open_price": 0,
-    "date": ""
-  }
-]
-
 /* PORTFOLIO ACTIONS */
 export const fetchPortfolio = (activePortfolio:number) => async (dispatch:Dispatch) => {
   const token = sessionStorage.getItem("token")!
@@ -52,6 +13,7 @@ export const fetchPortfolio = (activePortfolio:number) => async (dispatch:Dispat
   portfolio: resWallet
   })
 }
+
 
 /* PORTFOLIO TOTAL ACTIONS */
 
@@ -82,4 +44,13 @@ export const fetchTransactions = (activePortfolio:number) => async (dispatch:Dis
   type: "fetch",
   transactions: resHistory
   })
+}
+
+/* ACTIVE PORTFOLIO */
+
+export const updateActivePortfolio = (activePortfolio:number) => {
+  return  {
+    type: "update",
+    activePortfolio: activePortfolio
+  }
 }

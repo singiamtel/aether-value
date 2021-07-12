@@ -1,41 +1,20 @@
 import AddStock from '../AddStock';
 import './Portfolio.css';
-import { useDispatch, useSelector} from "react-redux"
+import { useSelector} from "react-redux"
 import {State} from "../../store/reducers"
-import { bindActionCreators } from 'redux';
-import { actionCreators } from '../../store/store';
-import { useEffect } from 'react';
+
 import PortfolioRow from './PortfolioRow';
-import { emptyPortfolio, emptyTransactions } from '../../models/emptyModels';
+
 
   
 
 const Portfolio =() => {
 	let numberOfRows = 0
 
-	/* Redux */
-	const dispatch = useDispatch()
-	const { fetchPortfolio, updateTotalPortfolio, fetchTransactions } = bindActionCreators(actionCreators, dispatch)
 	/* Acceso a la tienda */
 	let portfolio = useSelector((state:State) => state.portfolio)
 	let totalPortfolio = useSelector((state:State) => state.portfolioTotal)
-	let transactions = useSelector((state:State) => state.transactions)
-	updateTotalPortfolio(portfolio)
-
-	/* Usamos un portfolio vacío mientras se resuelve la request*/
-	if(portfolio == undefined)
-		portfolio = emptyPortfolio
-	
-
-	/* Usamos un historial de transacciones vacío mientras se resuelve la request*/
-	if(transactions == undefined)
-		transactions = emptyTransactions
-
-
-	useEffect(() =>{
-		fetchPortfolio(0)
-		fetchTransactions(0)
-	},[])
+	let transactions = useSelector((state:State) => state.transactions)	
 	
 
 	return (

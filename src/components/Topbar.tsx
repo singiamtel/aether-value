@@ -1,18 +1,41 @@
 import Dropdown from './Dropdown';
 import './Topbar.css';
 import { State } from '../store/reducers';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../store/store';
 
 
 
 function TopBar() {
-	/* Stores the total value of the Portfolio from today and yesterday */
-	let prevTotalPortfolio = 0
 
+	/* =============================================================================== */
+	/*		     MANTENEMOS EL PORTFOLIO Y LAS TRANSACCIONES ACTUALIZADAS		       */
+	/* =============================================================================== */
+	const dispatch = useDispatch()
+	const { fetchPortfolio, updateTotalPortfolio, fetchTransactions } = bindActionCreators(actionCreators, dispatch)
 	/* Acceso a la tienda */
 	let portfolio = useSelector((state:State) => state.portfolio)
 	let totalPortfolio = useSelector((state:State) => state.portfolioTotal)
 	let transactions = useSelector((state:State) => state.transactions)
+	let activePortfolio = useSelector((state:State) => state.activePortfolio)		
+
+	/* Dependen del número de portfolio activo en este momento */
+	useEffect(() =>{
+		fetchPortfolio(activePortfolio)
+		fetchTransactions(activePortfolio)
+	},[activePortfolio])
+
+	/* Depende del portfolio activo y del propio portfolio */
+	useEffect(() =>{
+		updateTotalPortfolio(portfolio)
+	},[activePortfolio,portfolio])
+
+	/* =============================================================================== */
+
+	/* Stores the total value of the Portfolio from today and yesterday */
+	let prevTotalPortfolio = 0
 
 	/* Conseguimos el valor del portfolio */
 	portfolio.map((stock) => ( 
@@ -29,6 +52,8 @@ function TopBar() {
 
 	const totalChange = (totalPortfolio - invested)
 	const totalChangePercentage = (totalChange/invested)*100
+
+	
 
 	return (
 		<div className='text-white flex text-xs justify-center items-center h-full'>

@@ -9,19 +9,16 @@ import DropdownPortfolio from './DropdownPortfolio';
 
 type SidebarProps ={
 	activeElement: string,
-	activePortfolio:number,
-	setActivePortfolio:React.Dispatch<React.SetStateAction<number>>
 }
 
-function Sidebar({activeElement, activePortfolio, setActivePortfolio}:SidebarProps) {
+function Sidebar({activeElement}:SidebarProps) {
 	
-
 	return (
 		<div className='sidebarContainer'>
 			<img id="Logo" src="/logo_white.png" alt="logo" />
 			
 			<div className="flex items-center justify-center">
-					<DropdownPortfolio activePortfolio={activePortfolio} setActivePortfolio={setActivePortfolio}/>
+					<DropdownPortfolio />
 			</div>
 			<Link to="/Home">
 			<button className={activeElement === "Dashboard" ? "active": "btn"}>

@@ -2,7 +2,7 @@ import {PortfolioType} from '../../models/portfolio.interface'
 
 type ActionType = {
     type: string,
-    portfolio: PortfolioType[]
+    portfolio?: PortfolioType[]
 }
 
 const emptyPortfolio:PortfolioType[] = [

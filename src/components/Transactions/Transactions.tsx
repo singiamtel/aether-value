@@ -4,7 +4,8 @@ import {TransactionType} from '../../models/portfolio.interface'
 import {VscTriangleDown,VscTriangleUp} from 'react-icons/vsc'
 import { useSelector } from 'react-redux';
 import { State } from '../../store/reducers';
-import { updateTransactions } from '../../store/action-creators';
+import { fetchTransactions, updateTransactions } from '../../store/action-creators';
+import { useEffect } from 'react';
 
 type TransactionsProps = {
 	descending: boolean[],
@@ -18,6 +19,12 @@ let numberOfRows = 0
 
 /* Acceso a la tienda */
 let transactions = useSelector((state:State) => state.transactions)
+let activePortfolio = useSelector((state:State) => state.activePortfolio)
+
+/* Dependen del número de portfolio activo en este momento */
+useEffect(() =>{
+	fetchTransactions(activePortfolio)
+},[activePortfolio])
 
 
 

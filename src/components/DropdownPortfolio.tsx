@@ -1,18 +1,31 @@
 import { Menu, Transition } from '@headlessui/react'
-import { Fragment} from 'react'
+import { Fragment, useEffect} from 'react'
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { AiOutlineSetting, AiTwotoneSetting } from "react-icons/ai";
 import { VscDebugBreakpointDataUnverified, VscDebugBreakpointData } from "react-icons/vsc";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPortfolio, fetchTransactions, updateActivePortfolio } from '../store/action-creators';
+import { State } from '../store/reducers';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../store/store';
 
 
-type DropdownPortfolioProps = {
-  activePortfolio:number,
-  setActivePortfolio:React.Dispatch<React.SetStateAction<number>>
-}
 
-export default function DropdownPortfolio({activePortfolio,setActivePortfolio}:DropdownPortfolioProps) {
+export default function DropdownPortfolio() {
+  /* Acceso a la tienda */
+  let activePortfolio = useSelector((state:State) => state.activePortfolio)
+  console.log(activePortfolio)
   let portfolioName = JSON.parse(sessionStorage.getItem('wallets')!)[activePortfolio].name
 
+  /* Redux */
+	const dispatch = useDispatch()
+	const { updateActivePortfolio } = bindActionCreators(actionCreators, dispatch)
+
+
+
+
+
+  
   return (
     <div className="text-right">
       <Menu as="div" className="relative inline-block text-left">
@@ -35,12 +48,14 @@ export default function DropdownPortfolio({activePortfolio,setActivePortfolio}:D
           <Menu.Items className="absolute left-0 w-48 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="px-1 py-1 ">
               {JSON.parse(sessionStorage.getItem('wallets')!).map((wallet:any,key:number) => (
-                ((wallet.name !=portfolioName) ? 
+                ((wallet.name != portfolioName) ? 
                 <Menu.Item>
                 {({ active }) => (
                   
                     <button
-                      onClick= {() => (setActivePortfolio(key))}
+                      onClick= {() => (
+                        updateActivePortfolio(key)
+                      )}
                       className={`${active ? 'text-black' : 'text-gray-600'
                       } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                     >

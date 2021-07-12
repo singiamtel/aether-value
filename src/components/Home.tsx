@@ -4,9 +4,9 @@ import Portfolio from './Portfolio/Portfolio';
 import './Home.css';
 import Watchlist from './Watchlist/Watchlist';
 import IndustryChart from "./Charts/IndustryChart";
-import { useState, useEffect } from 'react';
-import {PortfolioType, TransactionType} from '../models/portfolio.interface'
-import { emptyPortfolio, emptyTransactions } from '../models/emptyModels';
+import { useState } from 'react';
+import {PortfolioType} from '../models/portfolio.interface'
+import { emptyPortfolio } from '../models/emptyModels';
 
 
 function Home() {
@@ -20,19 +20,22 @@ function Home() {
     decades = 10 / years
   } */
 
+  /* let dollarHour = 10, hours = 0, days = 0, weeks = 0, months = 0, years = 0, decades = 0 */
+  /* calculateDollarTime() */
+
+
   //Declaración de variables
   const [watchlist,setWatchlist] = useState<PortfolioType[]>(emptyPortfolio)
-  const [activePortfolio, setActivePortfolio] = useState(0)
   let activeWatchlist = 1
-  /* let dollarHour = 10, hours = 0, days = 0, weeks = 0, months = 0, years = 0, decades = 0 */
-/*   calculateDollarTime() */
+ 
 
+	
 
   return (
     <div className="Home">
       {/* Sidebar */}
       <div className="Sidebar">
-        <Sidebar activeElement="Dashboard" activePortfolio={activePortfolio} setActivePortfolio={setActivePortfolio}/>
+        <Sidebar activeElement="Dashboard"/>
       </div>
 
       <header className="Topbar">

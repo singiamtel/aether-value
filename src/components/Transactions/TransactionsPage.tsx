@@ -7,13 +7,12 @@ import Transactions from './Transactions';
 function TransactionsPage() {
 
 const [descending,setDescending] = useState([false, false, false, false, false, false, false, false, false])
-const [activePortfolio, setActivePortfolio] = useState(0)
 	
 return (
 	<div className="Home">
       {/* Sidebar */}
       <div className="Sidebar">
-        <Sidebar activeElement="Transactions" activePortfolio={activePortfolio} setActivePortfolio={setActivePortfolio}/>
+        <Sidebar activeElement="Transactions"/>
       </div>
 
       <header className="Topbar">
