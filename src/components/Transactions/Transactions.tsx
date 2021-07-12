@@ -38,8 +38,13 @@ const setDescendingSingular = (index:number) => {
 }
 
 const sortingFunction = (index:number, transactions: TransactionType[]) => {
-	/* CHANGE SORT METHODS */
 	switch(index){
+	case 1:
+		transactions.sort((a,b)=> (a.asset <= b.asset ? 1 : -1))
+		break;
+	case 2:
+		transactions.sort((a,b)=> (a.asset <= b.asset ? 1 : -1))
+		break;
 	case 3:
 		transactions.sort((a,b)=> (a.amount <= b.amount ? -1 : 1))
 		break;
