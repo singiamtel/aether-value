@@ -36,8 +36,8 @@ function Sidebar({activeElement}:SidebarProps) {
 				Portfolio
 			</button>
 			</Link>
-			<Link to="/Watchlist">
-			<button className="btn">
+			<Link to="/Watchlists">
+			<button className={activeElement === "Watchlists" ? "active": "btn"}>
 				<div className="px-7">
 					<FaRegEye style={{fontSize:30}}/>
 				</div>

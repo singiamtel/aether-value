@@ -1,37 +1,39 @@
 .registerContainer{
 	background-color: #485461;
-	background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
-	height: 100%;
+	background-image: linear-gradient(315deg, #485461 20%, #28313b 60%);
 	width: 100%;
+	height: 100%;
 }
 
 
 .registerContainer .box{
-	position: fixed;
-	top: 50%;
-	left: 50%;	
-	transform: translate(-50%, -60%);
 	background: white;
 	width: 30%;
-	height: 55%;
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 5px;
 }
 
 
 .registerContainer .button{
 	background-color: #485461;
-	background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+	background-image: linear-gradient(315deg, #485461 0%, #28313b 70%);
 	height: 100%;
 	width: 100%;
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+	transition: background linear 0.2s;
 }
 
 .registerContainer .button:hover{
-	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	background-image: linear-gradient(315deg, #485461 0%, #28313b 40%);
+}
+.registerContainer .button:focus{
+	box-shadow: inset 0 0 10px #000000;
+	background:#171c22;
 }
 
 .registerContainer .logo{
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%;
-	margin-top: -150px;
+	width: 10%;
+	margin-top: -15%;
 	user-select: none;
 }

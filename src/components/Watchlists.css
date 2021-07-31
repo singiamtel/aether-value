@@ -22,22 +22,6 @@
   overflow-y: auto;
 }
 
- 
-.dataContainer{
-  background: #3E4347;
-  border-radius: 10px;
-  padding: 30px;
-  width: 50%;
-}
-
-.MoneyToTime{
-  width: 17%;
-  height: 100%;
-}
-.WatchlistHome{
-  width: 30.9%;
-}
-
-.ChartContainer{
-  width: 33%;
+.Watchlist{
+  width: 32.5%;
 }

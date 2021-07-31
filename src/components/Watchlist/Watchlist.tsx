@@ -3,13 +3,19 @@ import WatchlistRow from "./WatchlistRow";
 import { useSelector } from 'react-redux';
 import { State } from '../../store/reducers';
 
+type WatchlistProps = {
+	index?: number,
+}
   
-const Watchlist =() => {
+const Watchlist = ({index}:WatchlistProps) => {
 	let numberOfRows = 0;
 
 	
 	/* Acceso a la tienda */
 	let activeWatchlist = useSelector((state:State) => state.activePortfolio[1])
+	/* En caso de especificar qué portfolio queremos, se utiliza el índice dado */
+	if(index != undefined)
+		activeWatchlist = index
 	let watchlist = useSelector((state:State) => state.portfolio[activeWatchlist])
 	
 	let name = JSON.parse(sessionStorage.getItem('wallets')!)[activeWatchlist].name

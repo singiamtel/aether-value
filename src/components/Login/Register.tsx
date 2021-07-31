@@ -10,22 +10,22 @@ interface Values {
 
 function Register() {
 	let history = useHistory();
-  const handleSubmit = async (values: Values, { setSubmitting }: FormikHelpers<Values> ) => {
-    if(await register(values.username, values.password)){
-      console.log("register successful");
-      setTimeout(() => {
-        history.push("/home");
-        setSubmitting(false)
-      }, 500)
-    }
-    else{
-      console.log("register failed");
-    }
-  }
+	const handleSubmit = async (values: Values, { setSubmitting }: FormikHelpers<Values> ) => {
+		if(await register(values.username, values.password)){
+		console.log("register successful");
+		setTimeout(() => {
+			history.push("/home");
+			setSubmitting(false)
+		}, 500)
+		}
+		else{
+		console.log("register failed");
+		}
+	}
 return (
-	<div className="registerContainer">
+	<div className="registerContainer flex justify-center items-center flex-col">
+		<img className="logo" src="/logo_white.png" alt="logo" />
 		<div className="box rounded-2xl shadow-2xl">
-			<img className="logo" src="/logo_white.png" alt="logo" />
 			<h1 className="font-sans text-3xl text-center p-10">
 				<b>Register.</b> Enter your data.
 			</h1>
@@ -39,22 +39,22 @@ return (
 					onSubmit={handleSubmit}
 				>	
 					<Form className="flex flex-col items-center">
-						<p className={"px-4 py-2 text-black flex flex-col items-start w-1/2"}>
+						<p className={"px-4 py-2 text-black flex flex-col items-start w-3/4"}>
 						<label className="text-sm font-bold p-1" htmlFor="username">Choose your username </label>
 						<Field className="border p-2 w-full" name="username" placeholder="" />
 						</p>
 
-						<p className={"px-4 py-2 text-black flex flex-col items-start w-1/2"}>
+						<p className={"px-4 py-2 text-black flex flex-col items-start w-3/4"}>
 						<label className="text-sm font-bold p-1" htmlFor="password">Enter your password </label>
 						<Field className="border p-2 w-full" type="password" name="password" placeholder="" />
 						</p>
 
-						<p className={"px-4 py-2 text-black flex flex-col items-start w-1/2"}>
+						<p className={"px-4 py-2 text-black flex flex-col items-start w-3/4"}>
 						<label className="text-sm font-bold p-1" htmlFor="password">Repeat your password </label>
 						<Field className="border p-2 w-full" type="password" name="password" placeholder="" />
 						</p>
 
-						<p className={"px-4 py-3 text-black flex justify-center w-1/2"}>
+						<p className={"px-4 py-3 text-black flex justify-center w-3/4"}>
 							<button className="button p-2 rounded-xl text-white" type="submit">Register</button>
 						</p>
 					</Form>

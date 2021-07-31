@@ -1,7 +1,7 @@
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import Portfolio from './Portfolio/Portfolio';
-import './Home.css';
+import './Watchlists.css';
 import Watchlist from './Watchlist/Watchlist';
 import AssetTypeChart from "./Charts/AssetTypeChart";
 import { useState } from 'react';
@@ -14,43 +14,31 @@ import MoneyTime from './MoneyTime';
 import AssetChart from './Charts/AssetChart';
 
 
-function Home() {
+function Watchlists() {
 
   return (
     <div className="Home">
         {/* Sidebar */}
         <div className="Sidebar">
-        <Sidebar activeElement="Dashboard"/>
+            <Sidebar activeElement="Watchlists"/>
         </div>
 
         <header className="Topbar">
-        <Topbar/>
+            <Topbar/>
         </header>
         {/* Main */}
         <div className="Main p-7">
-            <Portfolio/>
-
-
 
             {/* Widgets Container */}
-            <div className="flex gap-4 pt-7 flex-wrap">
-                <div className="dataContainer flex flex-row gap-4 pt-7">
-                    <div className="ChartContainer">
-                        <AssetChart/>
-                    </div>
-                    <div className="ChartContainer">
-                        <AssetTypeChart/>  
-                    </div>
-                            
-                </div>
+            <div className="flex gap-4 flex-wrap"> 
                 
-                <div className="MoneyToTime">
-                    <MoneyTime />
-                </div>
+                
 
-                <div className="overflow-hidden WatchlistHome">	
-                    <Watchlist />
+                {JSON.parse(sessionStorage.getItem('wallets')!).map((wallet:any,key:number) => (
+                <div className="overflow-hidden Watchlist">	
+                    <Watchlist index={key}/>
                 </div>
+                ))}
             </div>
 
          
@@ -61,4 +49,4 @@ function Home() {
     </div>
   );
 }
-export default Home;
+export default Watchlists;
