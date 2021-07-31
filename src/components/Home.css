@@ -26,25 +26,18 @@
 .dataContainer{
   background: #3E4347;
   border-radius: 10px;
-  padding: 20px;
+  padding: 30px;
+  width: 50%;
 }
 
-.hoursContainer{
-  background-color: var(--lightGray);
-  border-radius: 5px;
-  border: 1px solid var(--primaryColor);
-  text-align: center;
+.MoneyToTime{
+  width: 17%;
+  height: 100%;
+}
+.Watchlist{
+  width: 30.9%;
 }
 
-.hoursContainer h1{
-  font-size: 130%;
-  color:var(--primaryColor);
-  padding: 10px;
-}
-
-.submitButton{
-  background-color: var(--secondaryColor);
-  border-radius: 5px;
-  border: 1px solid var(--primaryColor);
-  text-align: center;
+.ChartContainer{
+  width: 33%;
 }

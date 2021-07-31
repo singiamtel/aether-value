@@ -1,0 +1,54 @@
+.Settings{
+  background-color: var(--secondaryColor);
+  height: 100%;
+  width: 100%;
+}
+
+.Sidebar{
+  height: 100%;
+  width: 15%;
+  float: left;
+}
+
+.Topbar{
+  background-color: var(--primaryColor);
+  height: 7%;
+}
+
+.Main{
+  height: 93%;
+  width: 85%;
+  float: left;
+  overflow-y: auto;
+}
+
+.options{
+  background-color: #3E4347;
+  border-radius: 5px;
+
+}
+
+.optionsTitle{
+  background-color: #3E4347;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.submitButton{
+  background-color: var(--secondaryColor);
+  border-radius: 5px;
+  border: 1px solid var(--primaryColor);
+  text-align: center;
+}
+
+.submitButton:hover{
+	background-image: linear-gradient(315deg, var(--secondaryColor) 0%, #c8c8c8 80%);
+}
+
+.submitButton:active{
+	
+	box-shadow: inset 0 0 5px #000000;
+	background:#c8c8c8;
+}

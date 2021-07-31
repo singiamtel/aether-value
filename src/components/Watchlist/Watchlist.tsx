@@ -1,26 +1,24 @@
 import './Watchlist.css';
 import WatchlistRow from "./WatchlistRow";
-import {PortfolioType, TransactionType} from '../../models/portfolio.interface'
+import { useSelector } from 'react-redux';
+import { State } from '../../store/reducers';
 
-type WatchlistProps = {
-	name:string,
-	watchlist: PortfolioType[],
-
-  }
   
-  
-const Watchlist =({name, watchlist}:WatchlistProps) => {
+const Watchlist =() => {
 	let numberOfRows = 0;
 
-	/* Stores the total value of the Portfolio */
-	let totalPortfolio = 0
-	watchlist.map((stock)=> (totalPortfolio += stock.amount * parseFloat(stock.api.values[0].close)) )
+	
+	/* Acceso a la tienda */
+	let activeWatchlist = useSelector((state:State) => state.activePortfolio[1])
+	let watchlist = useSelector((state:State) => state.portfolio[activeWatchlist])
+	
+	let name = JSON.parse(sessionStorage.getItem('wallets')!)[activeWatchlist].name
 
 	return (
 		<div className='grid grid-rows-8'>
 			<div className='WatchlistHeader row-span-1'>
 				<div className="item">{name}</div>
-				<div className="item text-center">Target Price</div>
+				<div className="item text-center">Target</div>
 				<div className="item">MoS</div>
 				<div className="item">Price</div>
 				<div className="item">Day +/-</div>

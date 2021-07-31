@@ -19,7 +19,7 @@ let numberOfRows = 0
 
 /* Acceso a la tienda */
 let transactions = useSelector((state:State) => state.transactions)
-let activePortfolio = useSelector((state:State) => state.activePortfolio)
+let activePortfolio = useSelector((state:State) => state.activePortfolio[0])
 
 /* Dependen del número de portfolio activo en este momento */
 useEffect(() =>{

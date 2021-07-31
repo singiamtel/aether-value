@@ -22,11 +22,11 @@ function WatchlistRow({rowNumber, ticker, targetPrice, price, closingPrice }:Wat
 
 	return (
 		<div className={"WatchlistRowContainer "+ (evenRow ? 'even' : 'odd') }>
-			<div className="item">{ticker}</div>
+			<div className="item border-r ">{ticker}</div>
 			<div className="item">$ {targetPrice}</div>
-			<div className="item">{MoS} %</div>
+			<div className={"item border-r "+ (MoS > 5 ? 'green' : 'orange') }>{MoS} %</div>
 			<div className="item">$ {parsedPrice.toFixed(2)}</div>
-			<div className={"item border-r "+ (dayChange > 0 ? 'green' : 'red') }><b>$ {dayChange.toFixed(2)} ({dayChangePercentage.toFixed(2)}%) </b></div>
+			<div className={"item border-r "+ (dayChange > 0 ? 'green' : 'red') }><b>{dayChangePercentage.toFixed(2)}% </b></div>
 			<div className="item"><FaTimes style={{cursor: 'pointer'}} /></div>	
 		</div>
 	);

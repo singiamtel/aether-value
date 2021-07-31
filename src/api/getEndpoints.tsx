@@ -64,3 +64,15 @@ export const GetTransactions = async (token:string,portfolioName:string) => {
     }
   return transactions.data
 }
+
+export const CreateWallet = async (token:string,portfolioName:string) => {
+  const response = await axios.post(apiRoute+"/wallet/create/"+portfolioName, {token:token});
+  if(response.data.status === "success"){
+    if(sessionStorage.setItem("token", response.data.token) === null)
+      console.log("Recieved null object as token")
+    else if(sessionStorage.setItem("wallets", JSON.stringify(response.data.wallets)) === null)
+      console.log("Recieved null object as wallets")
+    return true
+  }
+  return false
+}

@@ -2,15 +2,14 @@
     background-color: #C4C4C4;
     display: grid;
     grid-template-columns: repeat(2, 2fr) repeat(5, 1.4fr) repeat(4, 2fr) 2%;
+    
 }
 
 .item{
     border-top: 1px solid #C4C4C4;
-    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
 
 
@@ -33,6 +32,7 @@
 
     
 }
+
 .green{
     color: #0A7B44;
 }

@@ -9,9 +9,11 @@ export const fetchPortfolio = (activePortfolio:number) => async (dispatch:Dispat
   let resWallet = (await GetPortfolioContents(token, walletName)).wallet
 
   return dispatch({
-  type: "fetch",
-  portfolio: resWallet
-  })
+    type: "fetch",
+    portfolio: resWallet,
+    index: activePortfolio
+    })
+  
 }
 
 
@@ -48,9 +50,21 @@ export const fetchTransactions = (activePortfolio:number) => async (dispatch:Dis
 
 /* ACTIVE PORTFOLIO */
 
-export const updateActivePortfolio = (activePortfolio:number) => {
+export const updateActivePortfolio = (activePortfolio:number, index: number) => {
   return  {
     type: "update",
-    activePortfolio: activePortfolio
+    activePortfolio: activePortfolio,
+    index: index
+  }
+}
+
+
+/* SETTINGS */
+
+export const updateSettings = (value:number, index: number) => {
+  return {
+    type: "update",
+    value: value,
+    index: index
   }
 }

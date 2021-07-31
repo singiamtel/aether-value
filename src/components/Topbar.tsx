@@ -16,10 +16,11 @@ function TopBar() {
 	const dispatch = useDispatch()
 	const { fetchPortfolio, updateTotalPortfolio, fetchTransactions } = bindActionCreators(actionCreators, dispatch)
 	/* Acceso a la tienda */
-	let portfolio = useSelector((state:State) => state.portfolio)
+	let activePortfolio = useSelector((state:State) => state.activePortfolio[0])
+	let portfolio = useSelector((state:State) => state.portfolio[activePortfolio])
 	let totalPortfolio = useSelector((state:State) => state.portfolioTotal)
 	let transactions = useSelector((state:State) => state.transactions)
-	let activePortfolio = useSelector((state:State) => state.activePortfolio)		
+		
 
 	/* Dependen del número de portfolio activo en este momento */
 	useEffect(() =>{

@@ -4,6 +4,7 @@ import { useSelector} from "react-redux"
 import {State} from "../../store/reducers"
 
 import PortfolioRow from './PortfolioRow';
+import { getActiveElement } from 'formik';
 
 
   
@@ -12,7 +13,8 @@ const Portfolio =() => {
 	let numberOfRows = 0
 
 	/* Acceso a la tienda */
-	let portfolio = useSelector((state:State) => state.portfolio)
+	let activePortfolio = useSelector((state:State) => state.activePortfolio[0])
+	let portfolio = useSelector((state:State) => state.portfolio[activePortfolio])
 	let totalPortfolio = useSelector((state:State) => state.portfolioTotal)
 	let transactions = useSelector((state:State) => state.transactions)	
 	

@@ -1,7 +1,7 @@
 .WatchlistRowContainer{
     background-color: #C4C4C4;
     display: grid;
-    grid-template-columns: repeat(5, 1fr) 5%;
+    grid-template-columns: repeat(5, 0.5fr) 6%;
     
 }
 
@@ -21,3 +21,4 @@
 .WatchlistRowContainer .odd .item{
     background-color: #FFFFFF;
 }
+

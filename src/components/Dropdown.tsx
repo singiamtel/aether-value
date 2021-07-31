@@ -13,6 +13,12 @@ function signOut() {
   history.go(0)
 }
 
+function goToSettings() {
+  const history = createHistory();
+  history.push("/settings");
+  history.go(0)
+}
+
 export default function Drowpdown() {
   return (
     <div className="text-right">
@@ -38,6 +44,7 @@ export default function Drowpdown() {
                 {({ active }) => (
                   
                     <button
+                    onClick={(goToSettings)}
                       className={`${active ? 'text-black' : 'text-gray-600'
                       } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                     >

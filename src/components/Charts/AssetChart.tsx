@@ -1,21 +1,16 @@
 import { Doughnut } from 'react-chartjs-2';
-import { useDispatch, useSelector } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { emptyPortfolio, emptyTransactions } from '../../models/emptyModels';
+import { useSelector } from 'react-redux';
+
 import { State } from '../../store/reducers';
-import { actionCreators } from '../../store/store';
 
 
-const IndustryChart = () => {
+
+const AssetChart = () => {
 
 /* Acceso a la tienda */
-let portfolio = useSelector((state:State) => state.portfolio)
+let activePortfolio = useSelector((state:State) => state.activePortfolio[0])
+let portfolio = useSelector((state:State) => state.portfolio[activePortfolio])
 let totalPortfolio = useSelector((state:State) => state.portfolioTotal)
-
-
-/* Usamos un portfolio vacío mientras se resuelve la request*/
-if(portfolio == undefined)
-portfolio = emptyPortfolio
 
 
 /* Emulamos un diccionario */
@@ -23,9 +18,10 @@ const dict: any = {}
 const labels = []
 const data = []
 
+
 /* Rellenamos las industrias */
 portfolio.forEach((stock) => (
-  (dict[stock.api.meta.type] === undefined) ? dict[stock.api.meta.type]=((parseFloat(stock.api.values[0].close)*stock.amount)/totalPortfolio * 100) : dict[stock.api.meta.type]+=((parseFloat(stock.api.values[0].close)*stock.amount)/totalPortfolio * 100))
+  (dict[stock.api.meta.symbol] === undefined) ? dict[stock.api.meta.symbol]=((parseFloat(stock.api.values[0].close)*stock.amount)/totalPortfolio * 100) : dict[stock.api.meta.symbol]+=((parseFloat(stock.api.values[0].close)*stock.amount)/totalPortfolio * 100))
 )
 
 /* Recorremos nuestro diccionario */
@@ -66,7 +62,9 @@ const options = {
             color: 'rgb(255, 255, 255)',
            }
         }
-    }
+    },
+    responsive: true,
+    maintainAspectRatio: true 
 }
 
   return (
@@ -82,5 +80,4 @@ const options = {
       />
     </div>
   )};
-
-export default IndustryChart;
+export default AssetChart;

@@ -1,0 +1,13 @@
+
+.hoursContainer{
+  background-color: var(--lightGray);
+  border-radius: 5px;
+  border: 1px solid var(--primaryColor);
+  text-align: center;
+}
+
+.hoursContainer h1{
+  font-size: 130%;
+  color:var(--primaryColor);
+  padding: 10px;
+}

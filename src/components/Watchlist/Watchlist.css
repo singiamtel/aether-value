@@ -1,7 +1,8 @@
 .WatchlistHeader{
     color: white;
     display: grid;
-    grid-template-columns: repeat(5, 1fr) 5%;
+    grid-template-columns: repeat(5, 0.5fr) 6%;
+    font-size: 90%;
 
 }
 
