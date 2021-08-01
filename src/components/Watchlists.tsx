@@ -1,5 +1,5 @@
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
+import Sidebar from './Sidebar/Sidebar';
+import Topbar from './Topbar/Topbar';
 import Portfolio from './Portfolio/Portfolio';
 import './Watchlists.css';
 import Watchlist from './Watchlist/Watchlist';

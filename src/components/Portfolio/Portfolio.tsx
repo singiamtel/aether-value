@@ -1,4 +1,4 @@
-import AddStock from '../AddStock';
+import AddStock from './AddStock';
 import './Portfolio.css';
 import { useSelector} from "react-redux"
 import {State} from "../../store/reducers"

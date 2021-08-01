@@ -1,11 +1,12 @@
 import './Sidebar.css';
-import './Home.css';
+import '../Home.css';
 import { RiWallet2Line } from "react-icons/ri";
 import { RiDashboardFill } from "react-icons/ri";
 import { FaRegEye } from "react-icons/fa";
 import {BsListNested} from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import DropdownPortfolio from './DropdownPortfolio';
+import Quotes from '../Quotes';
 
 type SidebarProps ={
 	activeElement: string,
@@ -52,6 +53,7 @@ function Sidebar({activeElement}:SidebarProps) {
 				Transactions
 				</button>
 			</Link>
+
 		</div>
 	);
 }

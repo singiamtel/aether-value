@@ -1,10 +1,10 @@
 import Dropdown from './Dropdown';
 import './Topbar.css';
-import { State } from '../store/reducers';
+import { State } from '../../store/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { bindActionCreators } from 'redux';
-import { actionCreators } from '../store/store';
+import { actionCreators } from '../../store/store';
 
 
 

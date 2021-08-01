@@ -3,11 +3,11 @@ import { Fragment, useState } from 'react'
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { VscDebugBreakpointDataUnverified, VscDebugBreakpointData } from "react-icons/vsc";
 import { useDispatch, useSelector } from 'react-redux';
-import { State } from '../store/reducers';
+import { State } from '../../store/reducers';
 import { bindActionCreators } from 'redux';
-import { actionCreators } from '../store/store';
+import { actionCreators } from '../../store/store';
 import { ImPlus } from 'react-icons/im';
-import { CreateWallet } from '../api/getEndpoints';
+import { CreateWallet } from '../../api/getEndpoints';
 import { Formik, FormikHelpers, Form, Field } from 'formik';
 
 interface Values {

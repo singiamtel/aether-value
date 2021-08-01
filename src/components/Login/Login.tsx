@@ -3,6 +3,7 @@ import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { Link, useHistory } from "react-router-dom";
 import { login } from "../../api/getEndpoints"
 import {IoLogInOutline} from "react-icons/io5"
+import Quotes from '../Quotes';
 
 interface Values {
 	username:string,

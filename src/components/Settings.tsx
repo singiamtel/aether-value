@@ -1,5 +1,5 @@
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
+import Sidebar from './Sidebar/Sidebar';
+import Topbar from './Topbar/Topbar';
 import './Settings.css';
 import { Formik, FormikHelpers, Form, Field } from 'formik';
 import { updateSettings } from '../store/action-creators';
